@@ -1,0 +1,4 @@
+
+C:\Program Files\MongoDB 2.6 Standard\bin>mongoimport.exe --db AutoPrivilege --c
+ollection cars --type json --file c:\Users\Admin\Desktop\meanTodoApp\data\stockv
+o.json --jsonArray

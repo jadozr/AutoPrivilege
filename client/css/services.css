@@ -1,0 +1,53 @@
+#services {
+}
+
+.services .allServices {
+    margin-bottom: 10px;
+}
+
+.services .mB10, .mH10 {
+    margin-bottom: 10px !important;
+}
+
+.services .boxArticle {
+    background-color: white;
+    border: 1px solid #999;
+    padding: 10px;
+    overflow: hidden;
+    height: 136px;
+    padding-right: 27px;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    margin-right: 112px;
+    margin-left: 112px;
+}
+
+.services .boxContent {
+    width: 59%;
+}
+
+.services .boxText {
+    color: #666;
+}
+
+.services .floatL {
+    float: left !important;
+}
+
+.services .boxImg {
+    width: 40%;
+    float: right;
+}
+
+.services .max100 {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    margin-left: 200px;
+}
+
+.services .title {
+    color: #666;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}

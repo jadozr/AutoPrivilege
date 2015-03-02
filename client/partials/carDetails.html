@@ -1,0 +1,79 @@
+<div class="carDetails">
+    <section class="bTop hiddenOverflow">
+        <div class="floatL w70">
+            <div class="boxBtn">
+                <a class="btn" ng-class="icons" back><img src="../media/icons/right_circular.png"/><span
+                        class="backListingLabel hiddenSmartphone hiddenPhone">Retour au listing</span></a>
+                <a class="btn" href="#/">
+                    <span class="backListingLabel hiddenSmartphone hiddenPhone">Retour au listing</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- slider container -->
+    <div class="slider">
+
+        <!-- enumerate all photos -->
+        <img ng-repeat="photo in photos" class="slide" ng-swipe-right="showPrev()" ng-swipe-left="showNext()"
+             ng-show="isActive($index)" ng-src="{{photo.src}}"/>
+
+        <!-- prev / next controls -->
+        <a class="arrow prev" href="#" ng-click="showPrev()"></a>
+        <a class="arrow next" href="#" ng-click="showNext()"></a>
+
+        <!-- extra navigation controls -->
+        <ul class="nav">
+            <li ng-repeat="photo in photos" ng-class="{'active':isActive($index)}">
+                <img ng-src="{{photo.src}}" alt="{{photo.desc}}" title="{{photo.desc}}" ng-click="showPhoto($index);"/>
+            </li>
+        </ul>
+
+    </div>
+
+    <div class="box bgWhite">
+        <div class="dataLine">
+            <h1 class="noBold f12">
+                <span class="dataBrand">CITROEN ds3</span>
+                <span class="dataPrice">10&nbsp;990€ </span>
+                <span class="dataVersion">1.6 HDI 90 FAP AIRDREAM SO CHIC</span>
+                <span class="dataKm">78&nbsp;925 Km</span>
+                <span class="dataZip">Dpt. 38</span>
+                <span class="dataYear">2010</span>
+
+                <div class="dataWarranty">
+                    <span>Garantie 12 mois</span>
+                </div>
+            </h1>
+        </div>
+    </div>
+
+    <div class="box boxMainInfos">
+        <h2 class="f12 title clear">Informations générales</h2>
+
+        <div class="blockInfosL">
+            <div class="bGreyCR hiddenOverflow">
+                <span class="detailLBlockLabel">Version :</span><span class="detailRBlockLabel">1.6 HDI 90 FAP AIRDREAM SO CHIC</span>
+                <span class="detailLBlockLabel">Année :</span><span class="detailRBlockLabel">2010</span>
+                <span class="detailLBlockLabel">Kilométrage :</span>
+                <span class="detailRBlockLabel">
+                        78&nbsp;925 Km
+                </span>
+                <span class="detailLBlockLabel">Nombre de portes :</span><span class="detailRBlockLabel">3</span>
+                <span class="detailLBlockLabel">Puissance Fiscale :</span><span class="detailRBlockLabel">5 CV</span>
+                <span class="detailLBlockLabel">Boite de vitesse :</span><span
+                    class="detailRBlockLabel">Mécanique</span>
+            </div>
+        </div>
+        <div class="blockInfosR">
+            <div class="hiddenOverflow pL10">
+                <span class="detailLBlockLabel">Energie :</span><span class="detailRBlockLabel">Diesel</span>
+                <span class="detailLBlockLabel">Mise en circulation :</span><span
+                    class="detailRBlockLabel"> 22/12/2010</span>
+                <span class="detailLBlockLabel">Couleur intérieure :</span><span
+                    class="detailRBlockLabel">non communiqué</span>
+                <span class="detailLBlockLabel">Couleur extérieure :</span><span class="detailRBlockLabel">gris</span>
+                <span class="detailLBlockLabel">Première main :</span><span class="detailRBlockLabel">non </span>
+            </div>
+        </div>
+    </div>

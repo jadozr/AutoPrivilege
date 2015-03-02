@@ -1,0 +1,343 @@
+#carDetails {
+}
+
+.carDetails .w70 {
+    width: 70% !important;
+}
+
+.carDetails .floatL {
+    float: left !important;
+}
+
+.carDetails .boxMainInfos {
+    background: #fff;
+    overflow: hidden;
+}
+
+.carDetails .box {
+    margin-bottom: 10px;
+    padding: 8px;
+    color: #333333;
+    border: 1px solid #ccc;
+}
+
+.carDetails .boxMainInfos {
+    background: #fff;
+    overflow: hidden;
+    float: left;
+}
+
+.carDetails .boxNavAnnounce {
+    background: #ffffff;
+}
+
+.carDetails .boxNavAnnounce .btn {
+    position: relative;
+    font-size: 12px;
+    width: 32%;
+    padding: 4px 0;
+    margin-right: 1%;
+}
+
+.carDetails .bgWhite {
+    background-color: #fff !important;
+}
+
+.carDetails .hiddenOverflow {
+    overflow: hidden !important;
+}
+
+.carDetails .w70 {
+    width: 70% !important;
+}
+
+.carDetails .floatL {
+    float: left !important;
+}
+
+.carDetails .btn {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 0;
+    padding: 4px 12px;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 3px rgba(0, 0, 0, 0.10);
+    border: 1px solid #ddd;
+    border-bottom-color: #bbb;
+}
+
+.carDetails .box .title {
+    font-size: 14px;
+}
+
+.carDetails .boxMainInfos * {
+    color: #333 !important;
+}
+
+.carDetails .title {
+    color: #333;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.carDetails .f12 {
+    font-size: 12px !important;
+}
+
+.carDetails .clear, .clear:after {
+    clear: both !important;
+}
+
+.carDetails .clear {
+}
+
+.carDetails .blockInfosL {
+    float: left;
+    width: 55%;
+}
+
+.carDetails .blockInfosR {
+    float: left;
+    width: 45%;
+}
+
+.carDetails .pL10, .pW10 {
+    padding-left: 10px !important;
+}
+
+.carDetails .bGreyCR {
+    border-right: 1px solid #cccccc !important;
+}
+
+.carDetails .boxMainInfos .blockInfosL .detailLBlockLabel {
+    float: left;
+    width: 40%;
+}
+
+.carDetails .detailLBlockLabel {
+    font-weight: bold;
+}
+
+.carDetails .boxBtn {
+    margin-bottom: 15px;
+}
+
+.carDetails .dataLine {
+    overflow: hidden;
+}
+
+.carDetails .dataLine * {
+    color: #333333 !important;
+}
+
+.carDetails .noBold {
+    font-weight: normal !important;
+}
+
+.carDetails .f12 {
+    font-size: 12px !important;
+}
+
+.carDetails .dataBrand {
+    text-transform: uppercase;
+    float: left;
+    width: 70%;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.carDetails .dataPrice {
+    text-transform: uppercase;
+    float: right;
+    width: 30%;
+    font-weight: bold;
+    text-align: right;
+    font-size: 18px;
+    line-height: 1;
+}
+
+.carDetails .dataVersion {
+    clear: both;
+    float: left;
+    text-align: left;
+    width: 70%;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.carDetails .dataKm {
+    float: left;
+    width: 30%;
+    clear: both;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.carDetails .dataZip {
+    float: right;
+    font-weight: bold;
+    text-align: right;
+    width: 30%;
+}
+
+.carDetails .dataYear {
+    clear: both;
+    float: left;
+    font-weight: bold;
+    width: 70%;
+}
+
+.carDetails .dataWarranty {
+    float: left;
+    font-weight: bold;
+    margin-top: 10px;
+    width: 30%;
+    clear: both;
+}
+
+/*********/
+
+.carDetails .arrow {
+    cursor: pointer;
+    display: block;
+    height: 64px;
+    margin-top: -35px;
+    outline: medium none;
+    position: absolute;
+    top: 50%;
+    width: 64px;
+    z-index: 5;
+}
+
+.carDetails .arrow.prev {
+    background-image: url("../images/prev.png");
+    left: 20px;
+    opacity: 0.2;
+    transition: all 0.2s linear 0s;
+}
+
+.carDetails .arrow.next {
+    background-image: url("../images/next.png");
+    opacity: 0.2;
+    right: 20px;
+    transition: all 0.2s linear 0s;
+}
+
+.carDetails .arrow.prev:hover {
+    opacity: 1;
+}
+
+.carDetails .arrow.next:hover {
+    opacity: 1;
+}
+
+.carDetails .nav {
+    bottom: -4px;
+    display: block;
+    height: 48px;
+    left: 0;
+    margin: 0 auto;
+    padding: 1em 0 0.8em;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    width: 100%;
+    z-index: 5;
+}
+
+.carDetails .nav li {
+    border: 5px solid #AAAAAA;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    height: 30px;
+    margin: 0 8px;
+    position: relative;
+    width: 50px;
+}
+
+.carDetails .nav li.active {
+    border: 5px solid #FFFFFF;
+}
+
+.carDetails .nav li img {
+    width: 100%;
+}
+
+.carDetails .slider {
+    border: 15px solid #FFFFFF;
+    border-radius: 5px;
+    height: 500px;
+    margin: 20px auto;
+    position: relative;
+    width: 800px;
+
+    -webkit-perspective: 1000px;
+    -moz-perspective: 1000px;
+    -ms-perspective: 1000px;
+    -o-perspective: 1000px;
+    perspective: 1000px;
+
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.carDetails .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.carDetails .slide.ng-hide-add {
+    opacity: 1;
+
+    -webkit-transition: 1s linear all;
+    -moz-transition: 1s linear all;
+    -o-transition: 1s linear all;
+    transition: 1s linear all;
+
+    -webkit-transform: rotateX(50deg) rotateY(30deg);
+    -moz-transform: rotateX(50deg) rotateY(30deg);
+    -ms-transform: rotateX(50deg) rotateY(30deg);
+    -o-transform: rotateX(50deg) rotateY(30deg);
+    transform: rotateX(50deg) rotateY(30deg);
+
+    -webkit-transform-origin: right top 0;
+    -moz-transform-origin: right top 0;
+    -ms-transform-origin: right top 0;
+    -o-transform-origin: right top 0;
+    transform-origin: right top 0;
+}
+
+.carDetails .slide.ng-hide-add.ng-hide-add-active {
+    opacity: 0;
+}
+
+.carDetails .slide.ng-hide-remove {
+    -webkit-transition: 1s linear all;
+    -moz-transition: 1s linear all;
+    -o-transition: 1s linear all;
+    transition: 1s linear all;
+
+    display: block !important;
+    opacity: 0;
+}
+
+.carDetails .slide, .slide.ng-hide-remove.ng-hide-remove-active {
+    opacity: 1;
+}

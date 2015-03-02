@@ -1,0 +1,24 @@
+#cars {
+}
+
+.cars body {
+    padding: 10px !important;
+}
+
+.cars .ng-table tr.emphasis td {
+    background-color: #DDD;
+    font-weight: bold;
+}
+
+.cars tr {
+    cursor: pointer;
+}
+
+.cars .color {
+    background-color: #92BED1;
+}
+
+.cars .resize {
+    width: 130px; /* you can use % */
+    height: auto;
+}

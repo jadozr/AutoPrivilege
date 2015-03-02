@@ -1,0 +1,75 @@
+* {
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+    font-family: calibri;
+}
+
+.strike span {
+    text-decoration: line-through;
+    color: #ccc;
+}
+
+.cars {
+    padding: 20px;
+}
+
+.car {
+    padding: 10px;
+    font-size: 21px;
+    border-bottom: 1px solid;
+}
+
+.car .btn {
+    margin-left: 5px;
+    width: 72px;
+}
+
+.car:hover {
+    background: #e7e7e7;
+}
+
+@media (max-width: 991px) {
+    .car .btn {
+        margin-bottom: 10px;
+    }
+
+    .car input[type=checkbox] {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+@media (max-width: 991px) {
+    .car .btn-warning {
+        margin-top: 10px;
+        margin-left: 0px
+    }
+}
+
+@media (max-width: 450px) {
+    .car .col-xs-8 {
+        width: 85%;
+    }
+
+    .car .col-xs-3 {
+        width: 100%;
+        text-align: center;
+        border-top: 1px dashed #aaa;
+        padding-top: 10px;
+        margin-top: 10px;
+    }
+}
+
+body {
+    padding: 10px !important;
+}
+
+.ng-table tr.emphasis td {
+    background-color: #DDD;
+    font-weight: bold;
+}
+
+[ng-click] {
+    cursor: pointer;
+}
