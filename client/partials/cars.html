@@ -1,6 +1,6 @@
 <div class="cars">
     <div class="container" ng-controller="AutoPrivilegeCtrl">
-        <p>Recherche (par Marque/Famille/Kilométrage/Prix): <input class="form-control" type="text"
+        <p>Recherche (par Marque|Famille|Kilométrage|Prix): <input class="form-control" type="text"
                                                                    ng-model="filter.$"/></p>
         <table ng-table="tableParams" show-filter="true" class="table">
             <tr ng-repeat="car in $data" ng-click="showCarDetail(car._id)" ng-class="{color: hover}"
