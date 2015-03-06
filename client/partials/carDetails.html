@@ -2,35 +2,11 @@
     <section class="bTop hiddenOverflow">
         <div class="floatL w70">
             <div class="boxBtn">
-                <a class="btn" ng-class="icons" back><img src="../media/icons/right_circular.png"/><span
-                        class="backListingLabel hiddenSmartphone hiddenPhone">Retour au listing</span></a>
-                <a class="btn" href="#/">
-                    <span class="backListingLabel hiddenSmartphone hiddenPhone">Retour au listing</span>
-                </a>
+                <a class="btn" ng-class="icons" back><img src="../images/fleche.png"/><span
+                        class="backListingLabel  ">Retour au listing</span></a>
             </div>
         </div>
     </section>
-
-    <!-- slider container -->
-    <div class="slider">
-
-        <!-- enumerate all photos -->
-        <img ng-repeat="photo in photos" class="slide" ng-swipe-right="showPrev()" ng-swipe-left="showNext()"
-             ng-show="isActive($index)" ng-src="{{photo.src}}"/>
-
-        <!-- prev / next controls -->
-        <a class="arrow prev" href="#" ng-click="showPrev()"></a>
-        <a class="arrow next" href="#" ng-click="showNext()"></a>
-
-        <!-- extra navigation controls -->
-        <ul class="nav">
-            <li ng-repeat="photo in photos" ng-class="{'active':isActive($index)}">
-                <img ng-src="{{photo.src}}" alt="{{photo.desc}}" title="{{photo.desc}}" ng-click="showPhoto($index);"/>
-            </li>
-        </ul>
-
-    </div>
-
     <div class="box bgWhite">
         <div class="dataLine">
             <h1 class="noBold f12">
@@ -47,8 +23,30 @@
             </h1>
         </div>
     </div>
+    <!-- slider container -->
+    <div class="slider">
 
-    <div class="box boxMainInfos">
+        <!-- enumerate all photos -->
+        <!--<img ng-repeat="photo in photos" class="slide" ng-swipe-right="showPrev()" ng-swipe-left="showNext()"-->
+        <img ng-repeat="photo in photos" class="slide"
+        ng-show="isActive($index)" ng-src="{{photo.src}}"/>
+
+        <!-- prev / next controls -->
+     <!--   <a class="arrow prev" href="#" ng-click="showPrev()"></a>
+        <a class="arrow next" href="#" ng-click="showNext()"></a>-->
+
+        <!-- extra navigation controls -->
+        <ul class="nav">
+            <li ng-repeat="photo in photos" ng-class="{'active':isActive($index)}">
+                <img ng-src="{{photo.src}}" alt="{{photo.desc}}" title="{{photo.desc}}" ng-click="showPhoto($index);"/>
+            </li>
+        </ul>
+
+    </div>
+
+
+
+    <div class="box boxMainInfos col-md-8">
         <h2 class="f12 title clear">Informations générales</h2>
 
         <div class="blockInfosL">

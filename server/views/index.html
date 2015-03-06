@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="/css/services.css">
     <link rel="stylesheet" type="text/css" href="/css/cars.css">
     <link rel="stylesheet" type="text/css" href="/css/carDetails.css">
+    <link rel="stylesheet" type="text/css" href="/css/home.css">
     <link rel="stylesheet" type="text/css" href="/lib/ng-table/dist/ng-table.css">
 
     <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
@@ -26,14 +27,18 @@
 
 
 </head>
-<body>
+<body class="home">
 <div class="container">
     <nav class="navbar navbar-default navbar-static-top">
         <div class="navbar" ng-controller="NavbarCtrl">
             <div class="container">
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <!--<a class="brand" href="#/">AutoPrivilege</a>-->
-                    <ul class="nav navbar-nav">
+                    <a class="navbar-brand" rel="home" href="#/" title="Buy Sell Rent Everyting">
+                        <img style="max-width:500px; margin-top: -16px;"
+                             src="/images/logo.png">
+                    </a>
+                    <ul class="nav navbar-nav navbar-right">
                         <li ng-class="{active: routeIs('/')}"><a href="#/">Accueil</a></li>
                         <li ng-class="{active: routeIs('/services')}"><a href="#/services">Nos Services</a></li>
                         <li ng-class="{active: routeIs('/contact')}"><a href="#/contact">Contact</a></li>
@@ -45,6 +50,14 @@
     <hr/>
     <ng-view></ng-view>
 </div>
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">AUTOPRIVILEGE </p>
+
+        <p class="text-muted">Horaires d'ouverture :
+            Du Lundi au Vendredi de 9h à 12h30 et de 14h à 19h et le Samedi de 10h à 18h</p>
+    </div>
+</footer>
 <!-- Live reload script -->
 <script type="text/javascript" src="http://localhost:35729/livereload.js"></script>
 </body>

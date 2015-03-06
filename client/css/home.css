@@ -1,0 +1,55 @@
+#home {
+}
+
+
+.home .navbar-default .navbar-nav > li > a {
+    color: #2385A1;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.home .navbar-default {
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+
+.home hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #000;
+}
+
+.home .navbar-right {
+    float: right !important;
+    margin-right: 17px;
+}
+
+
+.home .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    padding-top: 10px;
+}
+
+.home p{
+    color: #2385A1;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.home .form-control {
+    width: 590px;
+}
+
+
+.home .footer {
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+}
+
+.home .text-muted{
+    color: #2385A1;
+    font-weight: bold;
+    font-size: 10px;
+    text-align: center;
+}

@@ -1,5 +1,28 @@
 <div class="contact" ng-controller="ContactCtrl">
-    <ui-gmap-google-map center='map.center' zoom='map.zoom'>33</ui-gmap-google-map>
+    <div class="col-md-4">
+        <div class="well">
+            <p class="lead">
+                AUTO PRIVILEGE
+                ADRESSE :
+                8 rue Henri Farman, Z.A des IV nations
+                44360 Vigneux De Bretagne
+                Loire-Atlantique - Pays de la Loire
+                N° SIREN :
+                521528166
+                #
+                Horaires d'ouverture :
+                du lundi au vendredi de 9H à 12H30 et de 14H
+                à 19H et le samedi de 10H a 18H
+            </p>
+            <hr>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <ui-gmap-google-map center='map.center' zoom='map.zoom' options='options'>
+            <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
+            </ui-gmap-marker>
+        </ui-gmap-google-map>
+    </div>
     <!-- <div class="contact">
          <div class="vertical-middle">
              <div class="container">

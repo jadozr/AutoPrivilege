@@ -180,6 +180,38 @@ autoPrivilegeApp.controller('CarDetailsCtrl', function ($scope, $routeParams, $w
     });
 });
 autoPrivilegeApp.controller('ContactCtrl', function ($scope, $http) {
+
+    $scope.map = { center: { latitude: 47.300014, longitude: -1.750570 }, zoom: 14 };
+    $scope.options = {scrollwheel: false};
+
+    $scope.marker = {
+        id: 0,
+        coords: {
+            latitude: 47.300014,
+            longitude: -1.750570
+        },
+        options: { draggable: true },
+        events: {
+            dragend: function (marker, eventName, args) {
+                $log.log('marker dragend');
+                var lat = marker.getPosition().lat();
+                var lon = marker.getPosition().lng();
+                $log.log(lat);
+                $log.log(lon);
+
+                $scope.marker.options = {
+                    animation:1,
+                    draggable: true,
+                    labelContent: "lat: " + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
+                    labelAnchor: "100 0",
+                    labelClass: "marker-labels"
+                };
+            }
+        }
+    };
+
+   // $scope.marker: {"id":1,"latitude":47.300014,"longitude":-1.750570,"showWindow":true,"options":{"animation":1,"labelContent":"Markers id 1","labelAnchor":"22 0","labelClass":"marker-labels"}}
+
     $scope.result = 'hidden'
     $scope.resultMessage;
     $scope.formData; //formData is an object holding the name, email, subject, and message

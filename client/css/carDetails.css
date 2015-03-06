@@ -244,10 +244,10 @@
 }
 
 .carDetails .nav {
-    bottom: -4px;
+    bottom: 475px;
     display: block;
     height: 48px;
-    left: 0;
+    left: -20px;
     margin: 0 auto;
     padding: 1em 0 0.8em;
     position: absolute;
@@ -282,7 +282,7 @@
     height: 500px;
     margin: 20px auto;
     position: relative;
-    width: 800px;
+    width: 690px;
 
     -webkit-perspective: 1000px;
     -moz-perspective: 1000px;
