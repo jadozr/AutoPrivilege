@@ -1,5 +1,5 @@
-'use strict'
-
+'use strict';
+var autoPrivilegeApp;
 autoPrivilegeApp.controller('NavbarCtrl', function NavbarController($scope, $location) {
     $scope.routeIs = function (routeName) {
         return $location.path() === routeName;
@@ -17,25 +17,22 @@ autoPrivilegeApp.directive('back', ['$window', function ($window) {
     };
 }]);
 
-/*autoPrivilegeApp.controller('ContactCtrl', function ($scope) {
- $scope.map = {center: {latitude: 45, longitude: -73}, zoom: 8};
- });*/
 
-autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($rootScope, $scope, $q, $filter, $window, autoPrivilegeFactory, ngTableParams) {
+autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($rootScope, $scope, $q, $filter, $window, autoPrivilegeFactory, NgTableParams) {
     $scope.cars = [];
     $scope.isEditable = [];
 // get all Cars on Load
     autoPrivilegeFactory.getCars().then(function (data) {
 
         //$scope.cars = data.data;
-        var data = data.data;
+        var datas = data.data;
         $scope.cars = data.data;
 
-        $scope.$watch("filter.$", function () {
+        $scope.$watch('filter.$', function () {
             $scope.tableParams.reload();
         });
 
-        $scope.tableParams = new ngTableParams({
+        $scope.tableParams = new NgTableParams({
                 page: 1,            // show first page
                 count: 10,          // count per page
                 filter: {
@@ -44,25 +41,12 @@ autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($rootScope, $scope, $
                 sorting: {
                     name: 'asc'     // initial sorting
                 }
-            }, /*{
-             total: data.length, // length of data
-             getData: function ($defer, params) {
-             // use build-in angular filter
-             var orderedData = params.filter() ?
-             $filter('filter')(data, params.filter()) :
-             data;
-
-             $scope.cars = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
-
-             params.total(orderedData.length); // set total for recalc pagination
-             $defer.resolve($scope.cars);
-             }
-             });*/
+            },
             {
-                total: data.length, // length of data
+                total: datas.length, // length of data
 
                 getData: function ($defer, params) {
-                    var filteredData = $filter('filter')(data, $scope.filter);
+                    var filteredData = $filter('filter')(datas, $scope.filter);
                     var orderedData = params.sorting() ?
                         $filter('orderBy')(filteredData, params.orderBy()) :
                         filteredData;
@@ -75,15 +59,15 @@ autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($rootScope, $scope, $
     });
 // Show Car detail
     $scope.showCarDetail = function (_id) {
-        $window.location = "#/carDetails/" + _id;
+        $window.location = '#/carDetails/' + _id;
     };
 
 // Save a Car to the server
     $scope.save = function ($event) {
-        if ($event.which == 13 && $scope.carInput) {
+        if ($event.which === 13 && $scope.carInput) {
             autoPrivilegeFactory.saveCars({
-                "car": $scope.carInput,
-                "isCompleted": false
+                'car': $scope.carInput,
+                'isCompleted': false
             }).then(function (data) {
                 $scope.cars.push(data.data);
             });
@@ -102,13 +86,13 @@ autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($rootScope, $scope, $
             if (data.data.updatedExisting) {
                 _t.isCompleted = cbk;
             } else {
-                alert('Oops something went wrong!');
+                console.log('Oops something went wrong!');
             }
         });
     };
 // Update the edited Car
     $scope.edit = function ($event, i) {
-        if ($event.which == 13 && $event.target.value.trim()) {
+        if ($event.which === 13 && $event.target.value.trim()) {
             var _t = $scope.cars[i];
             autoPrivilegeFactory.updateCars({
                 _id: _t._id,
@@ -119,7 +103,7 @@ autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($rootScope, $scope, $
                     _t.car = $event.target.value.trim();
                     $scope.isEditable[i] = false;
                 } else {
-                    alert('Oops something went wrong!');
+                    console.log('Oops something went wrong!');
                 }
             });
         }
@@ -193,55 +177,17 @@ autoPrivilegeApp.controller('ContactCtrl', function ($scope, $http) {
         options: { draggable: true },
         events: {
             dragend: function (marker, eventName, args) {
-                $log.log('marker dragend');
                 var lat = marker.getPosition().lat();
                 var lon = marker.getPosition().lng();
-                $log.log(lat);
-                $log.log(lon);
 
                 $scope.marker.options = {
                     animation:1,
                     draggable: true,
-                    labelContent: "lat: " + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
-                    labelAnchor: "100 0",
-                    labelClass: "marker-labels"
+                    labelContent: 'lat: ' + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
+                    labelAnchor: '100 0',
+                    labelClass: 'marker-labels'
                 };
             }
         }
     };
-
-   // $scope.marker: {"id":1,"latitude":47.300014,"longitude":-1.750570,"showWindow":true,"options":{"animation":1,"labelContent":"Markers id 1","labelAnchor":"22 0","labelClass":"marker-labels"}}
-
-    $scope.result = 'hidden'
-    $scope.resultMessage;
-    $scope.formData; //formData is an object holding the name, email, subject, and message
-    $scope.submitButtonDisabled = false;
-    $scope.submitted = false; //used so that form errors are shown only after the form has been submitted
-    $scope.submit = function (contactform) {
-        $scope.submitted = true;
-        $scope.submitButtonDisabled = true;
-        if (contactform.$valid) {
-            $http({
-                method: 'POST',
-                url: '/partials/contact-form.php',
-                data: $.param($scope.formData),  //param method from jQuery
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'}  //set the headers so angular passing info as form data (not request payload)
-            }).success(function (data) {
-                console.log(data);
-                if (data.success) { //success comes from the return json object
-                    $scope.submitButtonDisabled = true;
-                    $scope.resultMessage = data.message;
-                    $scope.result = 'bg-success';
-                } else {
-                    $scope.submitButtonDisabled = false;
-                    $scope.resultMessage = data.message;
-                    $scope.result = 'bg-danger';
-                }
-            });
-        } else {
-            $scope.submitButtonDisabled = false;
-            $scope.resultMessage = 'Failed :( Please fill out all the fields.';
-            $scope.result = 'bg-danger';
-        }
-    }
 });

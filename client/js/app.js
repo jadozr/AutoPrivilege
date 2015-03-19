@@ -1,4 +1,5 @@
-autoPrivilegeApp = angular.module('autoPrivilege', ['ngRoute', 'uiGmapgoogle-maps', 'ngTable', 'ngAnimate', 'ngTouch'])
+'use strict';
+var autoPrivilegeApp = angular.module('autoPrivilege', ['ngRoute', 'uiGmapgoogle-maps', 'ngTable', 'ngAnimate', 'ngTouch'])
     .config(function ($routeProvider) {
         $routeProvider
             .when('/', {

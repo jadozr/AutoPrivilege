@@ -18,6 +18,8 @@
     "strict": true,
     "trailing": true,
     "smarttabs": true,
+    "devel": true,
+    "globalstrict": true
     "globals": {
         "angular": false,
         "_": false,
@@ -35,5 +37,8 @@
         "element": false,
         "by": false,
         "protractor": false
-    }
+    },
+    options: {
+        node: true
+      }
 }
