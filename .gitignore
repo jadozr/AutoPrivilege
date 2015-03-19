@@ -31,8 +31,6 @@ Thumbs.db
 #ignore directorie
 node_modules/
 .idea/
-data/
 client/lib/
-
-
+data/
 ex2_contact/
