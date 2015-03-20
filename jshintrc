@@ -19,7 +19,7 @@
     "trailing": true,
     "smarttabs": true,
     "devel": true,
-    "globalstrict": true
+    "globalstrict": true,
     "globals": {
         "angular": false,
         "_": false,

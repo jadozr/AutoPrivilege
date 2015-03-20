@@ -1,12 +1,12 @@
 <div class="cars">
     <div class="container" ng-controller="AutoPrivilegeCtrl">
-        <p>Recherche (par Marque|Famille|Kilométrage|Prix): <input class="form-control" type="text"
-                                                                   ng-model="filter.$"/></p>
+        {{names}}
         <table ng-table="tableParams" show-filter="true" class="table">
             <tr ng-repeat="car in $data" ng-click="showCarDetail(car._id)" ng-class="{color: hover}"
                 ng-mouseenter="hover = true" ng-mouseleave="hover = false">
                 <td><img class="img-rounded resize" ng-src="../images/img00.jpg"></td>
-                <td data-title="'Marque'" sortable="Marque"> <!--filter="{ 'Marque': 'text' }"-->
+
+                <td data-title="'Marque'" sortable="Marque" filter="{ 'Marque': 'select' }" filter-data="names($column)">
                     {{car.Marque}}
                 </td>
                 <td data-title="'Famille'" sortable="Famille"> <!--filter="{ 'Famille': 'text' }"-->

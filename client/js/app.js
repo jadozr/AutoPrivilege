@@ -3,17 +3,17 @@ var autoPrivilegeApp = angular.module('autoPrivilege', ['ngRoute', 'uiGmapgoogle
     .config(function ($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: '/partials/cars.html',
+                templateUrl: '/partials/services.html',
                 controller: 'AutoPrivilegeCtrl'
             }).when('/contact', {
                 templateUrl: '/partials/contact.html',
                 controller: 'ContactCtrl'
-            }).when('/services', {
-                templateUrl: '/partials/services.html',
-                controller: 'AutoPrivilegeCtrl'
             }).when('/carDetails/:id', {
                 templateUrl: '/partials/carDetails.html',
                 controller: 'CarDetailsCtrl'
+            }).when('/occasions', {
+                templateUrl: '/partials/cars.html',
+                controller: 'AutoPrivilegeCtrl'
             }).otherwise({
                 redirectTo: '/'
             });

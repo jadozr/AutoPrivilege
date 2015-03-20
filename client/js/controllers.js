@@ -21,6 +21,7 @@ autoPrivilegeApp.directive('back', ['$window', function ($window) {
 autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($rootScope, $scope, $q, $filter, $window, autoPrivilegeFactory, NgTableParams) {
     $scope.cars = [];
     $scope.isEditable = [];
+
 // get all Cars on Load
     autoPrivilegeFactory.getCars().then(function (data) {
 
@@ -56,6 +57,40 @@ autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($rootScope, $scope, $
                 },
                 $scope: $scope
             });
+
+        $scope.$watch('cars', function () {
+            $scope.names = function (column) {
+                var def = $q.defer(),
+                    arr = [],
+                    names = [];
+                angular.forEach($scope.cars, function (item) {
+                    if (inArray(item.Marque, arr) === -1) {
+                        arr.push(item.Marque);
+                        names.push({
+                            'id': item.Marque,
+                            'title': item.Marque
+                        });
+                    }
+                });
+                def.resolve(names);
+                return def;
+            };
+        });
+        var inArray = Array.prototype.indexOf ?
+            function (val, arr) {
+                return arr.indexOf(val);
+            } :
+            function (val, arr) {
+                var i = arr.length;
+                while (i--) {
+                    if (arr[i] === val) {
+                        return i;
+                    }
+                }
+                return -1;
+            };
+
+
     });
 // Show Car detail
     $scope.showCarDetail = function (_id) {
@@ -165,7 +200,7 @@ autoPrivilegeApp.controller('CarDetailsCtrl', function ($scope, $routeParams, $w
 });
 autoPrivilegeApp.controller('ContactCtrl', function ($scope, $http) {
 
-    $scope.map = { center: { latitude: 47.300014, longitude: -1.750570 }, zoom: 14 };
+    $scope.map = {center: {latitude: 47.300014, longitude: -1.750570}, zoom: 14};
     $scope.options = {scrollwheel: false};
 
     $scope.marker = {
@@ -174,15 +209,15 @@ autoPrivilegeApp.controller('ContactCtrl', function ($scope, $http) {
             latitude: 47.300014,
             longitude: -1.750570
         },
-        options: { draggable: true },
+        options: {draggable: true},
         events: {
             dragend: function (marker, eventName, args) {
                 var lat = marker.getPosition().lat();
                 var lon = marker.getPosition().lng();
-
+                $scope.marker={'id':1,'latitude':$scope.marker.coords.latitude,'longitude':$scope.marker.coords.longitude,animation: 1,'showWindow':true};
                 $scope.marker.options = {
-                    animation:1,
-                    draggable: true,
+                    animation: 1,
+                    draggable: false,
                     labelContent: 'lat: ' + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
                     labelAnchor: '100 0',
                     labelClass: 'marker-labels'
