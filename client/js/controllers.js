@@ -19,79 +19,112 @@ autoPrivilegeApp.directive('back', ['$window', function ($window) {
 
 
 autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($rootScope, $scope, $q, $filter, $window, autoPrivilegeFactory, NgTableParams) {
-    $scope.cars = [];
-    $scope.isEditable = [];
 
-// get all Cars on Load
-    autoPrivilegeFactory.getCars().then(function (data) {
+    var qDocs = $q.defer();
+    qDocs.resolve(autoPrivilegeFactory.getCars());
 
-        //$scope.cars = data.data;
-        var datas = data.data;
-        $scope.cars = data.data;
+    $scope.tableParams = new NgTableParams({
+            page: 1,            // show first page
+            count: 10
+        },
+        {
+            total: qDocs.length, // length of data
 
-        $scope.$watch('filter.$', function () {
-            $scope.tableParams.reload();
-        });
+            getData: function ($defer, params) {
+                qDocs.promise.then(function (result) {
+                    var documents = result.data;
+                    //filtering
+                    var orderedData = params.filter() ?
+                        $filter('filter')(documents, params.filter()) :
+                        documents;
 
-        $scope.tableParams = new NgTableParams({
-                page: 1,            // show first page
-                count: 10,          // count per page
-                filter: {
-                    Marque: ''       // initial filter
-                },
-                sorting: {
-                    name: 'asc'     // initial sorting
-                }
-            },
-            {
-                total: datas.length, // length of data
-
-                getData: function ($defer, params) {
-                    var filteredData = $filter('filter')(datas, $scope.filter);
-                    var orderedData = params.sorting() ?
-                        $filter('orderBy')(filteredData, params.orderBy()) :
-                        filteredData;
-                    params.total(orderedData.length); // set total for recalc pagination
-
-                    $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-                },
-                $scope: $scope
-            });
-
-        $scope.$watch('cars', function () {
-            $scope.names = function (column) {
-                var def = $q.defer(),
-                    arr = [],
-                    names = [];
-                angular.forEach($scope.cars, function (item) {
-                    if (inArray(item.Marque, arr) === -1) {
-                        arr.push(item.Marque);
-                        names.push({
-                            'id': item.Marque,
-                            'title': item.Marque
-                        });
-                    }
+                    //sorting
+                    orderedData = params.sorting() ?
+                        $filter('orderBy')(orderedData, params.orderBy()) :
+                        orderedData;
+                    $scope.result = orderedData;
+                    //pagination
+                    $scope.documents = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                    params.total(orderedData.length);
+                    $defer.resolve($scope.documents);
                 });
-                def.resolve(names);
-                return def;
-            };
+            }
         });
-        var inArray = Array.prototype.indexOf ?
-            function (val, arr) {
-                return arr.indexOf(val);
-            } :
-            function (val, arr) {
-                var i = arr.length;
-                while (i--) {
-                    if (arr[i] === val) {
-                        return i;
-                    }
+
+    $scope.docNames = function (column) {
+        var def = $q.defer(),
+            arr = [],
+            docNames = [];
+        qDocs.promise.then(function (result) {
+            angular.forEach(result.data, function (item) {
+                if (inArray(item.Marque, arr) === -1) {
+                    arr.push(item.Marque);
+                    docNames.push({
+                        'id': item.Marque,
+                        'title': item.Marque
+                    });
                 }
-                return -1;
-            };
+            });
+        });
+        def.resolve(docNames);
+        return def;
+    };
+
+    var updateValidationForm = function () {
+        var result = $scope.result;
+        var def = $q.defer(),
+            arr = [],
+            docFamilles = [];
+        angular.forEach(result, function (item) {
+            if (inArray(item.Famille, arr) === -1) {
+                arr.push(item.Famille);
+                docFamilles.push({
+                    'id': item.Famille,
+                    'title': item.Famille
+                });
+            }
+        });
+        console.log('ici');
+
+        $scope.docFamilles = docFamilles;
+       
+    };
+    $scope.$watch('documents', updateValidationForm, true);
+
+/*    $scope.docFamilles = function (column) {
+        var def = $q.defer(),
+            arr = [],
+            docFamilles = [];
+        qDocs.promise.then(function (result) {
+            angular.forEach(result.data, function (item) {
+                if (inArray(item.Famille, arr) === -1) {
+                    arr.push(item.Famille);
+                    docFamilles.push({
+                        'id': item.Famille,
+                        'title': item.Famille
+                    });
+                }
+            });
+        });
+        def.resolve(docFamilles);
+        return def;
+    };*/
+
+    var inArray = Array.prototype.indexOf ?
+        function (val, arr) {
+            return arr.indexOf(val);
+        } :
+        function (val, arr) {
+            var i = arr.length;
+            while (i--) {
+                if (arr[i] === val) {
+                    return i;
+                }
+            }
+            return -1;
+        };
 
 
-    });
 // Show Car detail
     $scope.showCarDetail = function (_id) {
         $window.location = '#/carDetails/' + _id;
@@ -214,7 +247,13 @@ autoPrivilegeApp.controller('ContactCtrl', function ($scope, $http) {
             dragend: function (marker, eventName, args) {
                 var lat = marker.getPosition().lat();
                 var lon = marker.getPosition().lng();
-                $scope.marker={'id':1,'latitude':$scope.marker.coords.latitude,'longitude':$scope.marker.coords.longitude,animation: 1,'showWindow':true};
+                $scope.marker = {
+                    'id': 1,
+                    'latitude': $scope.marker.coords.latitude,
+                    'longitude': $scope.marker.coords.longitude,
+                    animation: 1,
+                    'showWindow': true
+                };
                 $scope.marker.options = {
                     animation: 1,
                     draggable: false,

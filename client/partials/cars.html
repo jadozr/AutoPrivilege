@@ -6,10 +6,10 @@
                 ng-mouseenter="hover = true" ng-mouseleave="hover = false">
                 <td><img class="img-rounded resize" ng-src="../images/img00.jpg"></td>
 
-                <td data-title="'Marque'" sortable="Marque" filter="{ 'Marque': 'select' }" filter-data="names($column)">
+                <td data-title="'Marque'" sortable="Marque" filter="{ 'Marque': 'select' }" filter-data="docNames($column)" data-sortable="'Marque'">
                     {{car.Marque}}
                 </td>
-                <td data-title="'Famille'" sortable="Famille"> <!--filter="{ 'Famille': 'text' }"-->
+                <td data-title="'Famille'" sortable="Famille" filter="{ 'Famille': 'select' }" filter-data="docFamilles($column)">
                     {{car.Famille}}
                 </td>
                 <td data-title="'Kilometrage'" sortable="Kilometrage">
