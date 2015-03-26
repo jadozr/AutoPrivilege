@@ -36,7 +36,7 @@
         "browser": false,
         "element": false,
         "by": false,
-        "protractor": false,
+        "protractor": false
     },
     options: {
         node: true
