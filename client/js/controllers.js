@@ -17,37 +17,39 @@ autoPrivilegeApp.directive('back', ['$window', function ($window) {
     };
 }]);
 
+autoPrivilegeApp.filter('unique', function() {
+    return function (arr, field) {
+        return _.uniq(arr, function(a) { return a[field]; });
+    };
+});
 
 autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, $window, autoPrivilegeFactory, ngTableParams) {
 
-    var data = [{brand: 'Moroni', model: 50},
-        {brand: 'Tiancum', model: 43},
-        {brand: 'Jacob', model: 27},
-        {brand: 'Nephi', model: 29},
-        {brand: 'Enos', model: 14},
-        {brand: 'Tiancum', model: 43},
-        {brand: 'Jacob', model: 27},
-        {brand: 'Nephi', model: 29},
-        {brand: 'Enos', model: 59},
-        {brand: 'Tiancum', model: 43},
-        {brand: 'Jacob', model: 27},
-        {brand: 'Nephi', model: 29},
-        {brand: 'Enos', model: 43},
-        {brand: 'Tiancum', model: 43},
-        {brand: 'Jacob', model: 27},
-        {brand: 'Nephi', model: 29},
-        {brand: 'Enos', model: 34}];
-
+/*    var data = [{Marque: 'Moroni', Famille: 50},
+        {Marque: 'Tiancum', Famille: 43},
+        {Marque: 'Jacob', Famille: 27},
+        {Marque: 'Nephi', Famille: 29},
+        {Marque: 'Enos', Famille: 34},
+        {Marque: 'Tiancum', Famille: 43},
+        {Marque: 'Jacob', Famille: 27},
+        {Marque: 'Nephi', Famille: 29},
+        {Marque: 'Enos', Famille: 34},
+        {Marque: 'Tiancum', Famille: 43},
+        {Marque: 'Jacob', Famille: 27},
+        {Marque: 'Nephi', Famille: 29},
+        {Marque: 'Enos', Famille: 34},
+        {Marque: 'Tiancum', Famille: 43},
+        {Marque: 'Jacob', Famille: 27},
+        {Marque: 'Nephi', Famille: 29},
+        {Marque: 'Enos', Famille: 34}];*/
     var qDocs = $q.defer();
     qDocs.resolve(autoPrivilegeFactory.getCars());
-
     $scope.tableParams = new ngTableParams({
         page: 1,            // show first page
         count: 10           // count per page
     }, {
-        //total: data.length, // length of data
         total: qDocs.length, // length of data
-        getData: function ($defer, params) {
+        getData: function($defer, params) {
             qDocs.promise.then(function (result) {
                 // use build-in angular filter
                 var orderedData = params.sorting ?
@@ -78,53 +80,44 @@ autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, 
             }
             return -1;
         };
-    $scope.brands = function (column) {
+
+    $scope.names = function(column) {
         var def = $q.defer(),
             arr = [],
-            brands = [];
+            names = [];
         qDocs.promise.then(function (result) {
-            angular.forEach(result.data, function (item) {
-                if (inArray(item.brand, arr) === -1) {
-                    arr.push(item.brand);
-                    brands.push({
-                        'id': item.brand,
-                        'title': item.brand
-                    });
-                }
-            });
+        angular.forEach(result.data, function(item){
+            if (inArray(item.Marque, arr) === -1) {
+                arr.push(item.Marque);
+                names.push({
+                    'id': item.Marque,
+                    'title': item.Marque
+                });
+            }
         });
-
-        $scope.brandOptions = brands;
-
-        def.resolve(brands);
+        });
+        def.resolve(names);
+        return def;
+    };
+    $scope.ages = function(column) {
+        var def = $q.defer(),
+            arr = [],
+            ages = [];
+        qDocs.promise.then(function (result) {
+        angular.forEach(result.data, function(item){
+            if (inArray(item.Famille, arr) === -1) {
+                arr.push(item.Famille);
+                ages.push({
+                    'id': item.Famille,
+                    'title': item.Famille
+                });
+            }
+        });
+        });
+        def.resolve(ages);
         return def;
     };
 
-
-    $scope.models = function (column, brand) {
-        console.log('brand:', brand);
-
-        var def = $q.defer(),
-            arr = [],
-            models = [];
-        qDocs.promise.then(function (result) {
-            angular.forEach(result.data, function (item) {
-                if (inArray(item.model, arr) === -1) {
-                    if (angular.isUndefined(brand) || item.brand === brand) {
-                        arr.push(item.model);
-                        models.push({
-                            'id': item.model,
-                            'title': item.model
-                        });
-                    }
-                }
-            });
-        });
-        $scope.modelOptions = models;
-
-        def.resolve(models);
-        return def;
-    };
 
     /*  var data = [{Marque: 'Moroni', Famille: 50},
      {Marque: 'Tiancum', Famille: 43},
@@ -332,10 +325,10 @@ autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, 
 });
 
 
-autoPrivilegeApp.controller('CarDetailsCtrl', function ($scope, $routeParams, $window, autoPrivilegeFactory) {
+autoPrivilegeApp.controller('CarDetailsCtrl', function ($scope, $routeParams, autoPrivilegeFactory) {
     autoPrivilegeFactory.getCarDetails($routeParams.id).then(function (data) {
         if (data) {
-            $scope.carDetails = data;
+
             // Set of Photos
             $scope.photos = [
                 {src: 'images/img00.jpg', desc: 'Image 01'},

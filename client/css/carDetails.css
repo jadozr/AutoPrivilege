@@ -209,40 +209,6 @@
 
 /*********/
 
-.carDetails .arrow {
-    cursor: pointer;
-    display: block;
-    height: 64px;
-    margin-top: -35px;
-    outline: medium none;
-    position: absolute;
-    top: 50%;
-    width: 64px;
-    z-index: 5;
-}
-
-.carDetails .arrow.prev {
-    background-image: url("../images/prev.png");
-    left: 20px;
-    opacity: 0.2;
-    transition: all 0.2s linear 0s;
-}
-
-.carDetails .arrow.next {
-    background-image: url("../images/next.png");
-    opacity: 0.2;
-    right: 20px;
-    transition: all 0.2s linear 0s;
-}
-
-.carDetails .arrow.prev:hover {
-    opacity: 1;
-}
-
-.carDetails .arrow.next:hover {
-    opacity: 1;
-}
-
 .carDetails .nav {
     bottom: 475px;
     display: block;
@@ -289,12 +255,6 @@
     -ms-perspective: 1000px;
     -o-perspective: 1000px;
     perspective: 1000px;
-
-    -webkit-transform-style: preserve-3d;
-    -moz-transform-style: preserve-3d;
-    -ms-transform-style: preserve-3d;
-    -o-transform-style: preserve-3d;
-    transform-style: preserve-3d;
 }
 
 .carDetails .slide {
@@ -310,13 +270,6 @@
     -moz-transition: 1s linear all;
     -o-transition: 1s linear all;
     transition: 1s linear all;
-
-    -webkit-transform: rotateX(50deg) rotateY(30deg);
-    -moz-transform: rotateX(50deg) rotateY(30deg);
-    -ms-transform: rotateX(50deg) rotateY(30deg);
-    -o-transform: rotateX(50deg) rotateY(30deg);
-    transform: rotateX(50deg) rotateY(30deg);
-
     -webkit-transform-origin: right top 0;
     -moz-transform-origin: right top 0;
     -ms-transform-origin: right top 0;
