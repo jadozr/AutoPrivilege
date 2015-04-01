@@ -1,7 +1,7 @@
 <div class="contact" ng-controller="ContactCtrl">
 
-    <!--
-        <div class="col-lg-12 col-md-12 col-sm-12" ng-controller="ContactCtrl">
+
+        <div class="col-lg-12 col-md-12 col-sm-12 blockForm" ng-controller="ContactCtrl">
             <div class="col-md-8">
                 <div class="alert alert-danger" ng-show="error">
                     <button class="close" data-dismiss="alert">x</button>
@@ -41,38 +41,6 @@
                 </form>
             </div>
         </div>
-        -->
-    <div class="col-md-4">
-        <div class="well">
-            <p class="lead">
-                <h4>Adresse postale</h4><img class="img-rounded resize" ng-src="../images/adresse.jpg">
-                AUTO PRIVILEGE<br>
-                8 rue Henri Farman, Z.A des IV nations<br>
-                44360 Vigneux De Bretagne
-            </p>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <ui-gmap-google-map center='map.center' zoom='map.zoom' options='options'>
-            <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
-            </ui-gmap-marker>
-        </ui-gmap-google-map>
-    </div>
-    <div class="col-md-4">
-        <div class="well">
-            <p class="lead">
 
-            <h4>Horaires d'ouverture</h4><img class="img-rounded resize" ng-src="../images/horaires.jpg">
-            Du Lundi au Vendredi
-            <ul style="list-style-type:circle">
-                <li>9:00-12:30</li>
-                <li>14:00-19:00</li>
-            </ul>
-            Le Samedi
-            <ul style="list-style-type:circle">
-                <li>10:00-12:30</li>
-                <li>14:00-18:00</li>
-                </p>
-        </div>
-    </div>
+
 </div>

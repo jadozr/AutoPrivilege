@@ -27,6 +27,38 @@ autoPrivilegeApp.filter('unique', function () {
 
 autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, $window, autoPrivilegeFactory, ngTableParams) {
 
+    $scope.map = {center: {latitude: 47.300014, longitude: -1.750570}, zoom: 14};
+    $scope.options = {scrollwheel: false};
+
+    $scope.marker = {
+        id: 0,
+        coords: {
+            latitude: 47.300014,
+            longitude: -1.750570
+        },
+        options: {draggable: true},
+        events: {
+            dragend: function (marker) {
+                var lat = marker.getPosition().lat();
+                var lon = marker.getPosition().lng();
+                $scope.marker = {
+                    'id': 1,
+                    'latitude': $scope.marker.coords.latitude,
+                    'longitude': $scope.marker.coords.longitude,
+                    animation: 1,
+                    'showWindow': true
+                };
+                $scope.marker.options = {
+                    animation: 1,
+                    draggable: false,
+                    labelContent: 'lat: ' + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
+                    labelAnchor: '100 0',
+                    labelClass: 'marker-labels'
+                };
+            }
+        }
+    };
+
     /*    var data = [{Marque: 'Moroni', Famille: 50},
      {Marque: 'Tiancum', Famille: 43},
      {Marque: 'Jacob', Famille: 27},
@@ -373,37 +405,7 @@ autoPrivilegeApp.controller('CarDetailsCtrl', function ($scope, $routeParams, au
 });
 autoPrivilegeApp.controller('ContactCtrl', function ($scope,$http) {
 
-    $scope.map = {center: {latitude: 47.300014, longitude: -1.750570}, zoom: 14};
-    $scope.options = {scrollwheel: false};
 
-    $scope.marker = {
-        id: 0,
-        coords: {
-            latitude: 47.300014,
-            longitude: -1.750570
-        },
-        options: {draggable: true},
-        events: {
-            dragend: function (marker) {
-                var lat = marker.getPosition().lat();
-                var lon = marker.getPosition().lng();
-                $scope.marker = {
-                    'id': 1,
-                    'latitude': $scope.marker.coords.latitude,
-                    'longitude': $scope.marker.coords.longitude,
-                    animation: 1,
-                    'showWindow': true
-                };
-                $scope.marker.options = {
-                    animation: 1,
-                    draggable: false,
-                    labelContent: 'lat: ' + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
-                    labelAnchor: '100 0',
-                    labelClass: 'marker-labels'
-                };
-            }
-        }
-    };
 
     $scope.success = false;
     $scope.error = false;

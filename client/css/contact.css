@@ -32,24 +32,23 @@
 
 .contact .lead {
     color: #6f6f6f;
-    font-size: 11px;
+    font-size: 20px;
 
 }
 
-.angular-google-map-container {
-    /* height: 400px;*/
-    height: 350px;
-    width: 350px;
-    margin-bottom: 30px;
-    border: 10px solid #fff;
-    box-shadow: 0 0 5px #ccc;
 
-    position: relative;
-    overflow: hidden;
-    transform: translateZ(0px);
-}
 
 .contact .btn-block {
     display: block;
     width: 83%;
+}
+
+.contact .blockForm{
+    margin-bottom: 50px;
+/*    border: 10px solid #fff;
+    box-shadow: 0 0 5px #ccc;
+
+    position: relative;
+    overflow: hidden;
+    transform: translateZ(0px);*/
 }

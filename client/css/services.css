@@ -67,3 +67,16 @@
     border: 10px solid #fff;
     box-shadow: 0 0 5px #ccc;
 }
+
+.angular-google-map-container {
+    /* height: 400px;*/
+    height: 350px;
+    width: 350px;
+    margin-bottom: 30px;
+    border: 10px solid #fff;
+    box-shadow: 0 0 5px #ccc;
+
+    position: relative;
+    overflow: hidden;
+    transform: translateZ(0px);
+}
