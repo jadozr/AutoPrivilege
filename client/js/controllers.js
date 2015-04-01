@@ -17,31 +17,33 @@ autoPrivilegeApp.directive('back', ['$window', function ($window) {
     };
 }]);
 
-autoPrivilegeApp.filter('unique', function() {
+autoPrivilegeApp.filter('unique', function () {
     return function (arr, field) {
-        return _.uniq(arr, function(a) { return a[field]; });
+        return _.uniq(arr, function (a) {
+            return a[field];
+        });
     };
 });
 
 autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, $window, autoPrivilegeFactory, ngTableParams) {
 
-/*    var data = [{Marque: 'Moroni', Famille: 50},
-        {Marque: 'Tiancum', Famille: 43},
-        {Marque: 'Jacob', Famille: 27},
-        {Marque: 'Nephi', Famille: 29},
-        {Marque: 'Enos', Famille: 34},
-        {Marque: 'Tiancum', Famille: 43},
-        {Marque: 'Jacob', Famille: 27},
-        {Marque: 'Nephi', Famille: 29},
-        {Marque: 'Enos', Famille: 34},
-        {Marque: 'Tiancum', Famille: 43},
-        {Marque: 'Jacob', Famille: 27},
-        {Marque: 'Nephi', Famille: 29},
-        {Marque: 'Enos', Famille: 34},
-        {Marque: 'Tiancum', Famille: 43},
-        {Marque: 'Jacob', Famille: 27},
-        {Marque: 'Nephi', Famille: 29},
-        {Marque: 'Enos', Famille: 34}];*/
+    /*    var data = [{Marque: 'Moroni', Famille: 50},
+     {Marque: 'Tiancum', Famille: 43},
+     {Marque: 'Jacob', Famille: 27},
+     {Marque: 'Nephi', Famille: 29},
+     {Marque: 'Enos', Famille: 34},
+     {Marque: 'Tiancum', Famille: 43},
+     {Marque: 'Jacob', Famille: 27},
+     {Marque: 'Nephi', Famille: 29},
+     {Marque: 'Enos', Famille: 34},
+     {Marque: 'Tiancum', Famille: 43},
+     {Marque: 'Jacob', Famille: 27},
+     {Marque: 'Nephi', Famille: 29},
+     {Marque: 'Enos', Famille: 34},
+     {Marque: 'Tiancum', Famille: 43},
+     {Marque: 'Jacob', Famille: 27},
+     {Marque: 'Nephi', Famille: 29},
+     {Marque: 'Enos', Famille: 34}];*/
     var qDocs = $q.defer();
     qDocs.resolve(autoPrivilegeFactory.getCars());
     $scope.tableParams = new ngTableParams({
@@ -49,7 +51,7 @@ autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, 
         count: 10           // count per page
     }, {
         total: qDocs.length, // length of data
-        getData: function($defer, params) {
+        getData: function ($defer, params) {
             qDocs.promise.then(function (result) {
                 // use build-in angular filter
                 var orderedData = params.sorting ?
@@ -81,38 +83,38 @@ autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, 
             return -1;
         };
 
-    $scope.names = function(column) {
+    $scope.names = function (column) {
         var def = $q.defer(),
             arr = [],
             names = [];
         qDocs.promise.then(function (result) {
-        angular.forEach(result.data, function(item){
-            if (inArray(item.Marque, arr) === -1) {
-                arr.push(item.Marque);
-                names.push({
-                    'id': item.Marque,
-                    'title': item.Marque
-                });
-            }
-        });
+            angular.forEach(result.data, function (item) {
+                if (inArray(item.Marque, arr) === -1) {
+                    arr.push(item.Marque);
+                    names.push({
+                        'id': item.Marque,
+                        'title': item.Marque
+                    });
+                }
+            });
         });
         def.resolve(names);
         return def;
     };
-    $scope.ages = function(column) {
+    $scope.ages = function (column) {
         var def = $q.defer(),
             arr = [],
             ages = [];
         qDocs.promise.then(function (result) {
-        angular.forEach(result.data, function(item){
-            if (inArray(item.Famille, arr) === -1) {
-                arr.push(item.Famille);
-                ages.push({
-                    'id': item.Famille,
-                    'title': item.Famille
-                });
-            }
-        });
+            angular.forEach(result.data, function (item) {
+                if (inArray(item.Famille, arr) === -1) {
+                    arr.push(item.Famille);
+                    ages.push({
+                        'id': item.Famille,
+                        'title': item.Famille
+                    });
+                }
+            });
         });
         def.resolve(ages);
         return def;
@@ -369,7 +371,7 @@ autoPrivilegeApp.controller('CarDetailsCtrl', function ($scope, $routeParams, au
         }
     });
 });
-autoPrivilegeApp.controller('ContactCtrl', function ($scope) {
+autoPrivilegeApp.controller('ContactCtrl', function ($scope,$http) {
 
     $scope.map = {center: {latitude: 47.300014, longitude: -1.750570}, zoom: 14};
     $scope.options = {scrollwheel: false};
@@ -402,4 +404,37 @@ autoPrivilegeApp.controller('ContactCtrl', function ($scope) {
             }
         }
     };
+
+    $scope.success = false;
+    $scope.error = false;
+    $scope.send = function () {
+
+        var htmlBody = '<div>Name: ' + $scope.user.name + '</div>' +
+            '<div>Email: ' + $scope.user.email + '</div>' +
+            '<div>Message: ' + $scope.user.body + '</div>' +
+            '<div>Date: ' + (new Date()).toString() + '</div>';
+
+        $http({
+            url: 'https://api.postmarkapp.com/email',
+            method: 'POST',
+            data: {
+                'From': 'foo@foo.com',
+                'To': 'bar@bar.com',
+                'HtmlBody': htmlBody,
+                'Subject': 'New Contact Form Submission'
+            },
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'X-Postmark-Server-Token': '8569dcd45-6a1a-4e7b-ae75-ea37629de4'
+            }
+        }).
+            success(function (data) {
+                $scope.success = true;
+                $scope.user = {};
+            }).
+            error(function (data) {
+                $scope.error = true;
+            });
+    }
 });
