@@ -413,13 +413,17 @@ autoPrivilegeApp.controller('ContactCtrl', function ($scope, autoPrivilegeFactor
             '<div>Message: ' + $scope.user.body + '</div>' +
             '<div>Date: ' + (new Date()).toString() + '</div>';
 
-        autoPrivilegeFactory.postEmail({'htmlBody': htmlBody}).
-            success(function (data) {
+        autoPrivilegeFactory.postEmail({'htmlBody': htmlBody});
+        //.
+           /* success(function (data) {*/
                 $scope.success = true;
                 $scope.user = {};
-            }).
+           /* }).
             error(function (data) {
                 $scope.error = true;
-            });
+            });*/
+    };
+    $scope.close = function () {
+        $scope.success = false;
     };
 });

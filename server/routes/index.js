@@ -55,10 +55,10 @@
         var htmlBody = req.body.htmlBody;
         email.addTo(to);
         email.setFrom(to);
-        email.setSubject('[sendgrid-php-example] Owl');
-        email.setText('Owl are you doing?');
+        email.setSubject('[AutoPrivilege] Demande information');
+        email.setText('Demande information');
         email.setHtml(htmlBody);
-        email.addSubstitution("%how%", "Owl");
+        email.addSubstitution("%how%", 'Demande information');
         email.addHeader('X-Sent-Using', 'SendGrid-API');
         email.addHeader('X-Transport', 'web');
 

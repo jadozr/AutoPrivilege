@@ -2,11 +2,11 @@
     <div class="col-lg-12 col-md-12 col-sm-12 blockForm" ng-controller="ContactCtrl">
         <div class="col-md-8">
             <div class="alert alert-danger" ng-show="error">
-                <button class="close" data-dismiss="alert">x</button>
+                <button type='button' class="close" data-dismiss="alert" ng-click="close()">x</button>
                 <strong>Erreur!</strong> Une erreur est survenue lors de la tentative d'envoye du message .
             </div>
             <div class="alert alert-success" ng-show="success">
-                <button class="close" data-dismiss="alert">x</button>
+                <button  type='button' class="close" data-dismiss="alert" ng-click="close()">x</button>
                 <strong>Succès! </strong> Votre message a été envoyé avec succès .
             </div>
             <p class="lead">
