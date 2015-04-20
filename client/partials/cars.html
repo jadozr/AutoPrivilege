@@ -1,5 +1,6 @@
 <div class="cars">
     <div class="container" ng-controller="AutoPrivilegeCtrl">
+        <p align="center"><img ng-src="../images/inprogress.png"></p>
         <!--        <table ng-table="tableParams" show-filter="true" class="table">
                     <tr ng-repeat="car in $data" ng-click="showCarDetail(car._id)" ng-class="{color: hover}"
                         ng-mouseenter="hover = true" ng-mouseleave="hover = false">
@@ -19,34 +20,37 @@
                         </td>
                     </tr>
                 </table>-->
-        <table ng-table="tableParams" show-filter="true" class="table">
-            <tr>
-                <td data-title="'Name'">
-                    <select name="name"
-                            data-ng-model="formData.name"
-                            ng-options="user.Marque for user in $data | unique:'Marque'"
-                            ng-change="changeAge(formData.name)"
-                            required>
-                        <option value=''>- Choisir un marque de véhicule -</option>
-                    </select>
-                </td>
-                <td data-title="'Age'">
-                    <select name="age" data-ng-model="formData.age"
-                            >
-                        <option value=''>- Choisir un modèle
-                            de véhicule -</option>
-                        <option value="">{{formData.name.Famille}}</option>
-                    </select>
-                </td>
-            </tr>
-            <tr ng-repeat="user in $data|filter:formData.name">
-                <td>
-                    {{user.Marque}}
-                </td>
-                <td>
-                    {{user.Famille}}
-                </td>
-            </tr>
-        </table>
+
+        <!--  ----------------------------------------------------------------------------- ->
+
+          <!--  <table ng-table="tableParams" show-filter="true" class="table">
+                <tr>
+                    <td data-title="'Name'">
+                        <select name="name"
+                                data-ng-model="formData.name"
+                                ng-options="user.Marque for user in $data | unique:'Marque'"
+                                ng-change="changeAge(formData.name)"
+                                required>
+                            <option value=''>- Choisir un marque de véhicule -</option>
+                        </select>
+                    </td>
+                    <td data-title="'Age'">
+                        <select name="age" data-ng-model="formData.age"
+                                >
+                            <option value=''>- Choisir un modèle
+                                de véhicule -</option>
+                            <option value="">{{formData.name.Famille}}</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr ng-repeat="user in $data|filter:formData.name">
+                    <td>
+                        {{user.Marque}}
+                    </td>
+                    <td>
+                        {{user.Famille}}
+                    </td>
+                </tr>
+            </table>-->
     </div>
 </div>
