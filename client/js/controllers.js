@@ -365,16 +365,16 @@ autoPrivilegeApp.controller('CarDetailsCtrl', function ($scope, $routeParams, au
 
             // Set of Photos
             $scope.photos = [
-                {src: 'images/img00.jpg', desc: 'Image 01'},
-                {src: 'images/img01.jpg', desc: 'Image 02'},
-                {src: 'images/img02.jpg', desc: 'Image 03'},
-                {src: 'images/img03.jpg', desc: 'Image 04'},
-                {src: 'images/img04.jpg', desc: 'Image 05'},
-                {src: 'images/img05.jpg', desc: 'Image 06'},
-                {src: 'images/img06.jpg', desc: 'Image 07'},
-                {src: 'images/img07.jpg', desc: 'Image 08'},
-                {src: 'images/img08.jpg', desc: 'Image 09'},
-                {src: 'images/img09.jpg', desc: 'Image 10'}
+                {src: 'photos/img00.jpg', desc: 'Image 01'},
+                {src: 'photos/img01.jpg', desc: 'Image 02'},
+                {src: 'photos/img02.jpg', desc: 'Image 03'},
+                {src: 'photos/img03.jpg', desc: 'Image 04'},
+                {src: 'photos/img04.jpg', desc: 'Image 05'},
+                {src: 'photos/img05.jpg', desc: 'Image 06'},
+                {src: 'photos/img06.jpg', desc: 'Image 07'},
+                {src: 'photos/img07.jpg', desc: 'Image 08'},
+                {src: 'photos/img08.jpg', desc: 'Image 09'},
+                {src: 'photos/img09.jpg', desc: 'Image 10'}
             ];
 
             // initial image index
