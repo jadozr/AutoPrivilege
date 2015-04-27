@@ -2,6 +2,8 @@
 <html ng-app="autoPrivilege">
 <head>
     <title>AutoPrivilege</title>
+    <link rel="shortcut icon" href="#" >
+
     <link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/contact.css">
     <link rel="stylesheet" type="text/css" href="/css/services.css">
@@ -46,6 +48,9 @@
             </div>
         </div>
     </nav>
+    <div ng-controller="AutoPrivilegeCtrl">
+        {{users}} VÉHICULES DISPONIBLES
+    </div>
     <hr/>
     <ng-view></ng-view>
 </div>

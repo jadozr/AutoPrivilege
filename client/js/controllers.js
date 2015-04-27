@@ -25,7 +25,12 @@ autoPrivilegeApp.filter('unique', function () {
     };
 });
 
-autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, $window, autoPrivilegeFactory, ngTableParams) {
+autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, $window, autoPrivilegeFactory, NgTableParams) {
+
+    $scope.getSrc = function (photos) {
+        console.log(photos.split('|')[0]);
+        return  photos.split('|')[0];
+    };
 
     $scope.map = {center: {latitude: 47.300014, longitude: -1.750570}, zoom: 14};
     $scope.options = {scrollwheel: false};
@@ -59,26 +64,88 @@ autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, 
         }
     };
 
-    /*    var data = [{Marque: 'Moroni', Famille: 50},
-     {Marque: 'Tiancum', Famille: 43},
-     {Marque: 'Jacob', Famille: 27},
-     {Marque: 'Nephi', Famille: 29},
-     {Marque: 'Enos', Famille: 34},
-     {Marque: 'Tiancum', Famille: 43},
-     {Marque: 'Jacob', Famille: 27},
-     {Marque: 'Nephi', Famille: 29},
-     {Marque: 'Enos', Famille: 34},
-     {Marque: 'Tiancum', Famille: 43},
-     {Marque: 'Jacob', Famille: 27},
-     {Marque: 'Nephi', Famille: 29},
-     {Marque: 'Enos', Famille: 34},
-     {Marque: 'Tiancum', Famille: 43},
-     {Marque: 'Jacob', Famille: 27},
-     {Marque: 'Nephi', Famille: 29},
-     {Marque: 'Enos', Famille: 34}];*/
+
+    /*
+     var qDocs = $q.defer();
+     qDocs.resolve(autoPrivilegeFactory.getCars());
+     $scope.tableParams = new ngTableParams({
+     page: 1,            // show first page
+     count: 10           // count per page
+     }, {
+     total: qDocs.length, // length of data
+     getData: function ($defer, params) {
+     qDocs.promise.then(function (result) {
+     // use build-in angular filter
+     var orderedData = params.sorting ?
+     $filter('orderBy')(result.data, params.orderBy()) :
+     result.data;
+     orderedData = params.filter ?
+     $filter('filter')(orderedData, params.filter()) :
+     orderedData;
+     $scope.totalCars = result.data.length;
+
+     $scope.users = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
+     params.total(orderedData.length); // set total for recalc pagination
+     $defer.resolve($scope.users);
+     });
+     }
+     });
+
+     var inArray = Array.prototype.indexOf ?
+     function (val, arr) {
+     return arr.indexOf(val);
+     } :
+     function (val, arr) {
+     var i = arr.length;
+     while (i--) {
+     if (arr[i] === val) {
+     return i;
+     }
+     }
+     return -1;
+     };
+
+     $scope.names = function (column) {
+     var def = $q.defer(),
+     arr = [],
+     names = [];
+     qDocs.promise.then(function (result) {
+     angular.forEach(result.data, function (item) {
+     if (inArray(item.Marque, arr) === -1) {
+     arr.push(item.Marque);
+     names.push({
+     'id': item.Marque,
+     'title': item.Marque
+     });
+     }
+     });
+     });
+     def.resolve(names);
+     return def;
+     };
+     $scope.ages = function (column) {
+     var def = $q.defer(),
+     arr = [],
+     ages = [];
+     qDocs.promise.then(function (result) {
+     angular.forEach(result.data, function (item) {
+     if (inArray(item.Famille, arr) === -1) {
+     arr.push(item.Famille);
+     ages.push({
+     'id': item.Famille,
+     'title': item.Famille
+     });
+     }
+     });
+     });
+     def.resolve(ages);
+     return def;
+     };
+     */
     var qDocs = $q.defer();
     qDocs.resolve(autoPrivilegeFactory.getCars());
-    $scope.tableParams = new ngTableParams({
+
+    $scope.tableParams = new NgTableParams({
         page: 1,            // show first page
         count: 10           // count per page
     }, {
@@ -92,9 +159,7 @@ autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, 
                 orderedData = params.filter ?
                     $filter('filter')(orderedData, params.filter()) :
                     orderedData;
-
                 $scope.users = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
-
                 params.total(orderedData.length); // set total for recalc pagination
                 $defer.resolve($scope.users);
             });
@@ -114,7 +179,6 @@ autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, 
             }
             return -1;
         };
-
     $scope.names = function (column) {
         var def = $q.defer(),
             arr = [],
@@ -133,224 +197,6 @@ autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, 
         def.resolve(names);
         return def;
     };
-    $scope.ages = function (column) {
-        var def = $q.defer(),
-            arr = [],
-            ages = [];
-        qDocs.promise.then(function (result) {
-            angular.forEach(result.data, function (item) {
-                if (inArray(item.Famille, arr) === -1) {
-                    arr.push(item.Famille);
-                    ages.push({
-                        'id': item.Famille,
-                        'title': item.Famille
-                    });
-                }
-            });
-        });
-        def.resolve(ages);
-        return def;
-    };
-
-
-    /*  var data = [{Marque: 'Moroni', Famille: 50},
-     {Marque: 'Tiancum', Famille: 43},
-     {Marque: 'Jacob', Famille: 27},
-     {Marque: 'Nephi', Famille: 29},
-     {Marque: 'Enos', Famille: 14},
-     {Marque: 'Tiancum', Famille: 43},
-     {Marque: 'Jacob', Famille: 27},
-     {Marque: 'Nephi', Famille: 29},
-     {Marque: 'Enos', Famille: 59},
-     {Marque: 'Tiancum', Famille: 43},
-     {Marque: 'Jacob', Famille: 27},
-     {Marque: 'Nephi', Famille: 29},
-     {Marque: 'Enos', Famille: 43},
-     {Marque: 'Tiancum', Famille: 43},
-     {Marque: 'Jacob', Famille: 27},
-     {Marque: 'Nephi', Famille: 29},
-     {Marque: 'Enos', Famille: 34}];
-
-
-     var qDocs = $q.defer();
-     $scope.changed = false;
-
-     qDocs.resolve(autoPrivilegeFactory.getCars());
-     */
-    /* $scope.tableParams = new NgTableParams({
-     page: 1,            // show first page
-     count: 10
-     },
-     {
-     total: qDocs.length, // length of data
-
-     getData: function ($defer, params) {
-     qDocs.promise.then(function (result) {
-     var documents = result.data;
-     $scope.data = result.data;
-     $scope.maxlength = result.data.length;
-     //filtering
-     var orderedData = params.filter() ?
-     $filter('filter')(documents, params.filter()) :
-     documents;
-     $scope.orderedData = orderedData;
-     //sorting
-     orderedData = params.sorting() ?
-     $filter('orderBy')(orderedData, params.orderBy()) :
-     orderedData;
-     //pagination
-     $scope.documents = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
-     params.total(orderedData.length);
-     $defer.resolve($scope.documents);
-     $scope.changed = !$scope.changed;
-     });
-     }
-     });*/
-    /*
-
-     $scope.tableParams = new NgTableParams({
-     page: 1,            // show first page
-     count: 10           // count per page
-     }, {
-     //total: qDocs.length, // length of data
-     total: data.length,
-     getData: function ($defer, params) {
-     //   qDocs.promise.then(function (result) {
-     // use build-in angular filter
-     var orderedData = params.sorting ?
-     $filter('orderBy')(data, params.orderBy()) :
-     data;
-     orderedData = params.filter ?
-     $filter('filter')(orderedData, params.filter()) :
-     orderedData;
-
-     $scope.users = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
-
-     params.total(orderedData.length); // set total for recalc pagination
-     $defer.resolve($scope.users);
-     //    });
-     }
-     });
-
-     var inArray = Array.prototype.indexOf ?
-     function (val, arr) {
-     return arr.indexOf(val);
-     } :
-     function (val, arr) {
-     var i = arr.length;
-     while (i--) {
-     if (arr[i] === val) {
-     return i;
-     }
-     }
-     return -1;
-     };
-     $scope.names = function (column) {
-     var def = $q.defer(),
-     arr = [],
-     names = [];
-     //   qDocs.promise.then(function (result) {
-     angular.forEach(data, function (item) {
-     if (inArray(item.Marque, arr) === -1) {
-     arr.push(item.Marque);
-     names.push({
-     'id': item.Marque,
-     'title': item.Marque
-     });
-     }
-     });
-
-     $scope.nameOptions = names;
-
-     def.resolve(names);
-     return def;
-     //  });
-     };
-
-
-     $scope.ages = function (column, name) {
-     console.log('name:', name);
-
-     var def = $q.defer(),
-     arr = [],
-     ages = [];
-     // qDocs.promise.then(function (result) {
-     angular.forEach(data, function (item) {
-     if (inArray(item.age, arr) === -1) {
-     if (angular.isUndefined(name) || item.name === name) {
-     arr.push(item.Famille);
-     ages.push({
-     'id': item.Famille,
-     'title': item.Famille
-     });
-     }
-     }
-     //    });
-
-     $scope.ageOptions = ages;
-
-     def.resolve(ages);
-     return def;
-     });
-     };*/
-
-    /*$scope.docNames = function (column) {
-     var def = $q.defer(),
-     arr = [],
-     docNames = [];
-     qDocs.promise.then(function (result) {
-     angular.forEach(result.data, function (item) {
-     if (inArray(item.Marque, arr) === -1) {
-     arr.push(item.Marque);
-     docNames.push({
-     'id': item.Marque,
-     'title': item.Marque
-     });
-     }
-     });
-     });
-     def.resolve(docNames);
-     return def;
-     };
-     */
-
-    /*    $scope.docFamilles = function () {
-     var def = $q.defer(),
-     arr = [],
-     docFamilles = [];
-     // $scope.documents = '';
-     $scope.$watch('changed', function () {
-     if (typeof $scope.orderedData !== 'undefined' && $scope.orderedData.length < $scope.maxlength) {
-     docFamilles.splice(1, docFamilles.length);
-     angular.forEach($scope.orderedData, function (item) {
-     if (inArray(item.Famille, arr) === -1) {
-     arr.push(item.Famille);
-     docFamilles.push({
-     'id': item.Famille,
-     'title': item.Famille
-     });
-     }
-     });
-     }
-     }, true);
-     def.resolve(docFamilles);
-     return def;
-     };*/
-
-    /*    var inArray = Array.prototype.indexOf ?
-     function (val, arr) {
-     return arr.indexOf(val);
-     } :
-     function (val, arr) {
-     var i = arr.length;
-     while (i--) {
-     if (arr[i] === val) {
-     return i;
-     }
-     }
-     return -1;
-     };*/
-
 
 // Show Car detail
     $scope.showCarDetail = function (_id) {
@@ -363,19 +209,14 @@ autoPrivilegeApp.controller('CarDetailsCtrl', function ($scope, $routeParams, au
     autoPrivilegeFactory.getCarDetails($routeParams.id).then(function (data) {
         if (data) {
 
-            // Set of Photos
-            $scope.photos = [
-                {src: 'photos/img00.jpg', desc: 'Image 01'},
-                {src: 'photos/img01.jpg', desc: 'Image 02'},
-                {src: 'photos/img02.jpg', desc: 'Image 03'},
-                {src: 'photos/img03.jpg', desc: 'Image 04'},
-                {src: 'photos/img04.jpg', desc: 'Image 05'},
-                {src: 'photos/img05.jpg', desc: 'Image 06'},
-                {src: 'photos/img06.jpg', desc: 'Image 07'},
-                {src: 'photos/img07.jpg', desc: 'Image 08'},
-                {src: 'photos/img08.jpg', desc: 'Image 09'},
-                {src: 'photos/img09.jpg', desc: 'Image 10'}
-            ];
+            $scope.photos = [];
+            var str = data.data.Photos;
+            var res = str.split('|');
+            angular.forEach(res, function (item) {
+                var line =  {src: 'photos/'+item, desc: item};
+                $scope.photos.push(line);
+            });
+
 
             // initial image index
             $scope._Index = 0;
@@ -415,13 +256,13 @@ autoPrivilegeApp.controller('ContactCtrl', function ($scope, autoPrivilegeFactor
 
         autoPrivilegeFactory.postEmail({'htmlBody': htmlBody});
         //.
-           /* success(function (data) {*/
-                $scope.success = true;
-                $scope.user = {};
-           /* }).
-            error(function (data) {
-                $scope.error = true;
-            });*/
+        /* success(function (data) {*/
+        $scope.success = true;
+        $scope.user = {};
+        /* }).
+         error(function (data) {
+         $scope.error = true;
+         });*/
     };
     $scope.close = function () {
         $scope.success = false;
