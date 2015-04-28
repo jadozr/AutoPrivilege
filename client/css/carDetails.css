@@ -12,6 +12,7 @@
 .carDetails .boxMainInfos {
     background: #fff;
     overflow: hidden;
+    width: 1140px;
 }
 
 .carDetails .box {
@@ -224,7 +225,7 @@
 }
 
 .carDetails .nav li {
-    border: 5px solid #AAAAAA;
+    border: 5px solid #12C022;
     border-radius: 5px;
     cursor: pointer;
     display: inline-block;
@@ -255,6 +256,7 @@
     -ms-perspective: 1000px;
     -o-perspective: 1000px;
     perspective: 1000px;
+    margin-top: 40px;
 }
 
 .carDetails .slide {
@@ -293,4 +295,16 @@
 
 .carDetails .slide, .slide.ng-hide-remove.ng-hide-remove-active {
     opacity: 1;
+}
+.carDetails p.italic {
+    font-style: italic;
+    font-size: 10px;
+}
+.carDetails .one.third {
+    float: right;
+    font-size: 12px;
+    width: 150px
+}
+.carDetails .boxOptions {
+    height: 80px;
 }

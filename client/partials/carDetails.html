@@ -7,29 +7,31 @@
             </div>
         </div>
     </section>
-  <!--  <div class="box bgWhite">
+    <div class="box bgWhite">
         <div class="dataLine">
             <h1 class="noBold f12">
-                <span class="dataBrand">CITROEN ds3</span>
-                <span class="dataPrice">10&nbsp;990€ </span>
-                <span class="dataVersion">1.6 HDI 90 FAP AIRDREAM SO CHIC</span>
-                <span class="dataKm">78&nbsp;925 Km</span>
-                <span class="dataZip">Dpt. 38</span>
-                <span class="dataYear">2010</span>
+                <span class="dataBrand">{{car.Marque}} {{car.Famille}}</span>
+                <span class="dataPrice">{{car.PrixVenteTTC}} € </span>
+                <span class="dataVersion">{{car.Modele}}</span>
+                <span class="dataKm">{{car.Kilometrage}} Km</span>
+                <span class="dataZip">{{car.SocieteVille}}</span>
+                <span class="dataYear">{{car.Annee}}</span>
 
                 <div class="dataWarranty">
-                    <span>Garantie 12 mois</span>
+                    <span>Garantie: {{car.GarantieLibelle}}</span><br/>
+
+                    <p class="italic">(possibilité d'extension de 6 à 24 mois)</p>
                 </div>
             </h1>
         </div>
-    </div>-->
+    </div>
 
     <!-- slider container -->
     <div class="container slider">
         <!-- enumerate all photos -->
         <img ng-repeat="photo in photos" class="slide" ng-swipe-right="showPrev()" ng-swipe-left="showNext()"
              ng-show="isActive($index)" ng-src="{{photo.src}}"/>
-          <!-- extra navigation controls -->
+        <!-- extra navigation controls -->
         <ul class="nav">
             <li ng-repeat="photo in photos" ng-class="{'active':isActive($index)}">
                 <img src="{{photo.src}}" alt="{{photo.desc}}" title="{{photo.desc}}" ng-click="showPhoto($index);"/>
@@ -37,33 +39,52 @@
         </ul>
     </div>
 
-    <!--<div class="box boxMainInfos col-md-8">
+    <div class="box boxMainInfos col-md-8">
         <h2 class="f12 title clear">Informations générales</h2>
 
-        <div class="blockInfosL">
-            <div class="bGreyCR hiddenOverflow">
-                <span class="detailLBlockLabel">Version :</span><span class="detailRBlockLabel">1.6 HDI 90 FAP AIRDREAM SO CHIC</span>
-                <span class="detailLBlockLabel">Année :</span><span class="detailRBlockLabel">2010</span>
-                <span class="detailLBlockLabel">Kilométrage :</span>
-                <span class="detailRBlockLabel">
-                        78&nbsp;925 Km
-                </span>
-                <span class="detailLBlockLabel">Nombre de portes :</span><span class="detailRBlockLabel">3</span>
-                <span class="detailLBlockLabel">Puissance Fiscale :</span><span class="detailRBlockLabel">5 CV</span>
-                <span class="detailLBlockLabel">Boite de vitesse :</span><span
-                    class="detailRBlockLabel">Mécanique</span>
+        <div class="">
+            <div class=" hiddenOverflow">
+                <span class="detailLBlockLabel">Nombre de portes :</span><span class="detailRBlockLabel">{{car.NbPortes}}</span>
             </div>
-        </div>
-        <div class="blockInfosR">
-            <div class="hiddenOverflow pL10">
-                <span class="detailLBlockLabel">Energie :</span><span class="detailRBlockLabel">Diesel</span>
+            <div class=" hiddenOverflow">
+                <span class="detailLBlockLabel">Puissance Fiscale :</span><span class="detailRBlockLabel">{{car.PuissanceFiscale}} CV</span>
+            </div>
+            <div class=" hiddenOverflow">
+                <span class="detailLBlockLabel">Boite de vitesse :</span><span class="detailRBlockLabel">{{car.BoiteLibelle}}</span>
+            </div>
+            <div class=" hiddenOverflow">
+                <span class="detailLBlockLabel">Energie :</span><span
+                    class="detailRBlockLabel">{{car.EnergieLibelle}}</span>
+            </div>
+            <div class=" hiddenOverflow">
                 <span class="detailLBlockLabel">Mise en circulation :</span><span
-                    class="detailRBlockLabel"> 22/12/2010</span>
-                <span class="detailLBlockLabel">Couleur intérieure :</span><span
-                    class="detailRBlockLabel">non communiqué</span>
-                <span class="detailLBlockLabel">Couleur extérieure :</span><span class="detailRBlockLabel">gris</span>
-                <span class="detailLBlockLabel">Première main :</span><span class="detailRBlockLabel">non </span>
+                    class="detailRBlockLabel"> {{car.Date1Mec}}</span>
+            </div>
+            <div class=" hiddenOverflow">
+                <span class="detailLBlockLabel">Nombre de places :</span><span
+                    class="detailRBlockLabel">{{car.NbPlaces}}</span>
+            </div>
+            <div class=" hiddenOverflow">
+                <span class="detailLBlockLabel">Couleur extérieure :</span><span class="detailRBlockLabel">{{car.Couleur}}</span>
+            </div>
+            <div class=" hiddenOverflow">
+                <span class="detailLBlockLabel">Première main :</span><span class="detailRBlockLabel">{{car.PremiereMain}} </span>
             </div>
         </div>
-    </div>-->
+    </div>
+    <div class="box boxMainInfos col-md-8">
+        <h2 class="f12 title clear">Equipements de Serie et Options</h2>
+
+        <div class="">
+
+            <div class="hiddenOverflow pL10">
+                <div class="bGreyCR hiddenOverflow one third boxOptions" ng-repeat="EquipementsSerieEtOption in car.EquipementsSerieEtOption">
+                    <ul>
+                        <li>{{EquipementsSerieEtOption}}</li>
+                    </ul>
+                </div>
+                </span>
+            </div>
+        </div>
+    </div>
 </div>

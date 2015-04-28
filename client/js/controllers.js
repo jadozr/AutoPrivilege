@@ -241,6 +241,10 @@ autoPrivilegeApp.controller('CarDetailsCtrl', function ($scope, $routeParams, au
                 $scope._Index = index;
             };
 
+            data.data.EquipementsSerieEtOption = data.data.EquipementsSerieEtOption.split('|');
+            $scope.car = data.data;
+
+
         }
     });
 });
