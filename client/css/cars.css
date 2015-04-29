@@ -19,6 +19,12 @@
 }
 
 .cars .resize {
-    width: 130px; /* you can use % */
-    height: auto;
+     width: 130px; /* you can use % */
+     height: auto;
+ }
+
+.cars .resizeBrand {
+    width: 60px; /* you can use % */
+    height: 60px;
+    background-color: transparent;
 }

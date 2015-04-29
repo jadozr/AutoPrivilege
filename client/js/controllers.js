@@ -28,7 +28,6 @@ autoPrivilegeApp.filter('unique', function () {
 autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, $window, autoPrivilegeFactory, NgTableParams) {
 
     $scope.getSrc = function (photos) {
-        console.log(photos.split('|')[0]);
         return photos.split('|')[0];
     };
 
@@ -64,84 +63,6 @@ autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, 
         }
     };
 
-
-    /*
-     var qDocs = $q.defer();
-     qDocs.resolve(autoPrivilegeFactory.getCars());
-     $scope.tableParams = new ngTableParams({
-     page: 1,            // show first page
-     count: 10           // count per page
-     }, {
-     total: qDocs.length, // length of data
-     getData: function ($defer, params) {
-     qDocs.promise.then(function (result) {
-     // use build-in angular filter
-     var orderedData = params.sorting ?
-     $filter('orderBy')(result.data, params.orderBy()) :
-     result.data;
-     orderedData = params.filter ?
-     $filter('filter')(orderedData, params.filter()) :
-     orderedData;
-     $scope.totalCars = result.data.length;
-
-     $scope.users = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
-     params.total(orderedData.length); // set total for recalc pagination
-     $defer.resolve($scope.users);
-     });
-     }
-     });
-
-     var inArray = Array.prototype.indexOf ?
-     function (val, arr) {
-     return arr.indexOf(val);
-     } :
-     function (val, arr) {
-     var i = arr.length;
-     while (i--) {
-     if (arr[i] === val) {
-     return i;
-     }
-     }
-     return -1;
-     };
-
-     $scope.names = function (column) {
-     var def = $q.defer(),
-     arr = [],
-     names = [];
-     qDocs.promise.then(function (result) {
-     angular.forEach(result.data, function (item) {
-     if (inArray(item.Marque, arr) === -1) {
-     arr.push(item.Marque);
-     names.push({
-     'id': item.Marque,
-     'title': item.Marque
-     });
-     }
-     });
-     });
-     def.resolve(names);
-     return def;
-     };
-     $scope.ages = function (column) {
-     var def = $q.defer(),
-     arr = [],
-     ages = [];
-     qDocs.promise.then(function (result) {
-     angular.forEach(result.data, function (item) {
-     if (inArray(item.Famille, arr) === -1) {
-     arr.push(item.Famille);
-     ages.push({
-     'id': item.Famille,
-     'title': item.Famille
-     });
-     }
-     });
-     });
-     def.resolve(ages);
-     return def;
-     };
-     */
     var qDocs = $q.defer();
     qDocs.resolve(autoPrivilegeFactory.getCars());
 
@@ -179,7 +100,8 @@ autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, 
             }
             return -1;
         };
-    $scope.names = function (column) {
+
+    $scope.names = function(column) {
         var def = $q.defer(),
             arr = [],
             names = [];
@@ -194,6 +116,7 @@ autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, 
                 }
             });
         });
+        console.log(names);
         def.resolve(names);
         return def;
     };
@@ -214,7 +137,10 @@ autoPrivilegeApp.controller('CarDetailsCtrl', function ($scope, $routeParams, au
             var res = str.split('|');
             angular.forEach(res, function (item) {
                 var line = {src: 'photos/' + item, desc: item};
-                $scope.photos.push(line);
+                if($scope.photos.length <= 10)
+                {
+                    $scope.photos.push(line);
+                }
             });
 
 
@@ -244,18 +170,18 @@ autoPrivilegeApp.controller('CarDetailsCtrl', function ($scope, $routeParams, au
             data.data.EquipementsSerieEtOption = data.data.EquipementsSerieEtOption.split('|');
             $scope.car = data.data;
 
-            var nomList = new Array('Nombre de portes','Puissance Fiscale','Boite de vitesse','Energie','Mise en circulation','Nombre de places','Couleur extérieure','Première main');
-            if(data.data.PremiereMain === 'FAUX'){
+            var nomList = new Array('Nombre de portes', 'Puissance Fiscale', 'Boite de vitesse', 'Energie', 'Mise en circulation', 'Nombre de places', 'Couleur extérieure', 'Première main');
+            if (data.data.PremiereMain === 'FAUX') {
                 data.data.PremiereMain = 'Non';
-            }else{
+            } else {
                 data.data.PremiereMain = 'Oui';
 
             }
-            var dataList = new Array(data.data.NbPortes,data.data.PuissanceFiscale,data.data.BoiteLibelle,data.data.EnergieLibelle,data.data.Date1Mec,data.data.NbPlaces,data.data.Couleur,data.data.PremiereMain);
+            var dataList = new Array(data.data.NbPortes, data.data.PuissanceFiscale, data.data.BoiteLibelle, data.data.EnergieLibelle, data.data.Date1Mec, data.data.NbPlaces, data.data.Couleur, data.data.PremiereMain);
 
             //create the objectArray
             $scope.infoList = [];
-            for (var i = 0; i < nomList.length; i ++) {
+            for (var i = 0; i < nomList.length; i++) {
                 $scope.infoList.push({
                     left: nomList[i],
                     middle: dataList[i]
