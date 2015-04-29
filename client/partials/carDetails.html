@@ -10,6 +10,7 @@
     <div class="box bgWhite">
         <div class="dataLine">
             <h1 class="noBold f12">
+                <!--<span class="dataBrand"><img src="../marques/{{car.Marque}}.png"/></span>-->
                 <span class="dataBrand">{{car.Marque}} {{car.Famille}}</span>
                 <span class="dataPrice">{{car.PrixVenteTTC}} € </span>
                 <span class="dataVersion">{{car.Modele}}</span>
@@ -27,63 +28,60 @@
     </div>
 
     <!-- slider container -->
-    <div class="container slider">
-        <!-- enumerate all photos -->
-        <img ng-repeat="photo in photos" class="slide" ng-swipe-right="showPrev()" ng-swipe-left="showNext()"
-             ng-show="isActive($index)" ng-src="{{photo.src}}"/>
-        <!-- extra navigation controls -->
-        <ul class="nav">
-            <li ng-repeat="photo in photos" ng-class="{'active':isActive($index)}">
-                <img src="{{photo.src}}" alt="{{photo.desc}}" title="{{photo.desc}}" ng-click="showPhoto($index);"/>
-            </li>
-        </ul>
-    </div>
-
-    <div class="box boxMainInfos col-md-8">
-        <h2 class="f12 title clear">Informations générales</h2>
-
+    <div class=" boxMainInfos col-md-8">
+        <div class="blockInfosL">
+            <div class="hiddenOverflow pL10">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <td class="text_tittle" colspan="3">Informations générales</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat='element in infoList'>
+                        <td class = "text_shadow">{{element.left}}</td>
+                        <td class="text_emboss">{{element.middle}}</td>
+                        <td>{{element.right}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
         <div class="">
-            <div class=" hiddenOverflow">
-                <span class="detailLBlockLabel">Nombre de portes :</span><span class="detailRBlockLabel">{{car.NbPortes}}</span>
-            </div>
-            <div class=" hiddenOverflow">
-                <span class="detailLBlockLabel">Puissance Fiscale :</span><span class="detailRBlockLabel">{{car.PuissanceFiscale}} CV</span>
-            </div>
-            <div class=" hiddenOverflow">
-                <span class="detailLBlockLabel">Boite de vitesse :</span><span class="detailRBlockLabel">{{car.BoiteLibelle}}</span>
-            </div>
-            <div class=" hiddenOverflow">
-                <span class="detailLBlockLabel">Energie :</span><span
-                    class="detailRBlockLabel">{{car.EnergieLibelle}}</span>
-            </div>
-            <div class=" hiddenOverflow">
-                <span class="detailLBlockLabel">Mise en circulation :</span><span
-                    class="detailRBlockLabel"> {{car.Date1Mec}}</span>
-            </div>
-            <div class=" hiddenOverflow">
-                <span class="detailLBlockLabel">Nombre de places :</span><span
-                    class="detailRBlockLabel">{{car.NbPlaces}}</span>
-            </div>
-            <div class=" hiddenOverflow">
-                <span class="detailLBlockLabel">Couleur extérieure :</span><span class="detailRBlockLabel">{{car.Couleur}}</span>
-            </div>
-            <div class=" hiddenOverflow">
-                <span class="detailLBlockLabel">Première main :</span><span class="detailRBlockLabel">{{car.PremiereMain}} </span>
+            <div class="container slider">
+                <!-- enumerate all photos -->
+                <img ng-repeat="photo in photos" class="slide" ng-swipe-right="showPrev()"
+                     ng-swipe-left="showNext()"
+                     ng-show="isActive($index)" ng-src="{{photo.src}}"/>
+                <!-- extra navigation controls -->
+                <ul class="nav">
+                    <div class="boxSlider">
+                        <li ng-repeat="photo in photos" ng-class="{'active':isActive($index)}">
+                            <img src="{{photo.src}}" alt="{{photo.desc}}" title="{{photo.desc}}"
+                                 ng-click="showPhoto($index);"/>
+                        </li>
+                    </div>
+                </ul>
             </div>
         </div>
     </div>
-    <div class="box boxMainInfos col-md-8">
-        <h2 class="f12 title clear">Equipements de Serie et Options</h2>
-
-        <div class="">
-
+    <div class=" boxMainInfos col-md-8">
+        <div class="blockInfosC">
             <div class="hiddenOverflow pL10">
-                <div class="bGreyCR hiddenOverflow one third boxOptions" ng-repeat="EquipementsSerieEtOption in car.EquipementsSerieEtOption">
-                    <ul>
-                        <li>{{EquipementsSerieEtOption}}</li>
-                    </ul>
-                </div>
-                </span>
+                <table>
+                    <thead>
+                    <tr>
+                        <td class="text_tittle" colspan="3">Equipements de Serie et Options</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat='element in objList' ng-class=" 'text_shadow '">
+                        <td>{{element.left}}</td>
+                        <td>{{element.middle}}</td>
+                        <td>{{element.right}}</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

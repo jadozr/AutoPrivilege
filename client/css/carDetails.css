@@ -80,6 +80,7 @@
 
 .carDetails .boxMainInfos * {
     color: #333 !important;
+    margin-bottom: 20px;
 }
 
 .carDetails .title {
@@ -108,6 +109,13 @@
 .carDetails .blockInfosR {
     float: left;
     width: 45%;
+}
+
+.carDetails .blockInfosC {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50em;
+    text-align: left;
 }
 
 .carDetails .pL10, .pW10 {
@@ -210,22 +218,32 @@
 
 /*********/
 
+.carDetails .boxSlider {
+    width: 680px;
+    height: 45px;
+    #border: 1px solid #d7d7d7;
+    padding-top: 2px;
+}
+
 .carDetails .nav {
     bottom: 475px;
     display: block;
-    height: 48px;
+    height: 41px;
     left: -20px;
-    margin: 0 auto;
+    margin: 5px auto;
     padding: 1em 0 0.8em;
     position: absolute;
     right: 0;
     text-align: center;
-    width: 100%;
+    width: 680px;
     z-index: 5;
+    padding-top: 0px;
+    margin-top: 0px;
+    margin-bottom: 10px;
 }
 
 .carDetails .nav li {
-    border: 5px solid #12C022;
+    #border: 5px solid #FFFFFF;
     border-radius: 5px;
     cursor: pointer;
     display: inline-block;
@@ -236,7 +254,8 @@
 }
 
 .carDetails .nav li.active {
-    border: 5px solid #FFFFFF;
+    border: 5px solid #12C022;
+
 }
 
 .carDetails .nav li img {
@@ -249,7 +268,7 @@
     height: 500px;
     margin: 20px auto;
     position: relative;
-    width: 690px;
+    width: 25%;
 
     -webkit-perspective: 1000px;
     -moz-perspective: 1000px;
@@ -296,15 +315,73 @@
 .carDetails .slide, .slide.ng-hide-remove.ng-hide-remove-active {
     opacity: 1;
 }
+
 .carDetails p.italic {
     font-style: italic;
     font-size: 10px;
 }
+
 .carDetails .one.third {
     float: right;
     font-size: 12px;
     width: 150px
 }
+
 .carDetails .boxOptions {
     height: 80px;
+}
+
+.carDetails .table {
+    border: 1px solid #999;
+    width: 300px;
+}
+
+.carDetails table {
+    border: 1px solid #999;
+    width: 690px;
+}
+
+.carDetails table > thead > tr {
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #eee), color-stop(1, #fff));
+    text-align: center;
+    font-weight: bold;
+}
+
+.carDetails table > tbody > tr > td {
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.carDetails table > tbody > tr > td{  border-top: none; }
+
+.carDetails .color1 {
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #eee), color-stop(1, #fff));
+}
+
+.carDetails .text_shadow
+{
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 14px;
+    background-color: rgb(255, 255, 255);
+    text-shadow: rgb(255, 255, 255) 1px 3px 0px, rgb(187, 177, 177) 1px 13px 5px;
+}
+
+.carDetails .text_emboss
+{
+    text-align: end;
+    font-size: 13.5px;
+    font-weight: bold;
+    background-color: rgb(255, 255, 255);
+    text-shadow: rgba(255, 255, 255, 0.0980392) -1px -1px 1px, rgba(0, 0, 0, 0.498039) 1px 1px 1px;
+}
+
+.carDetails .text_tittle
+{
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 25px;
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #eee), color-stop(1, #fff));
+    text-shadow: rgba(255, 255, 255, 0.2) 3px 2px 3px;
 }

@@ -29,7 +29,7 @@ autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, 
 
     $scope.getSrc = function (photos) {
         console.log(photos.split('|')[0]);
-        return  photos.split('|')[0];
+        return photos.split('|')[0];
     };
 
     $scope.map = {center: {latitude: 47.300014, longitude: -1.750570}, zoom: 14};
@@ -213,7 +213,7 @@ autoPrivilegeApp.controller('CarDetailsCtrl', function ($scope, $routeParams, au
             var str = data.data.Photos;
             var res = str.split('|');
             angular.forEach(res, function (item) {
-                var line =  {src: 'photos/'+item, desc: item};
+                var line = {src: 'photos/' + item, desc: item};
                 $scope.photos.push(line);
             });
 
@@ -244,6 +244,32 @@ autoPrivilegeApp.controller('CarDetailsCtrl', function ($scope, $routeParams, au
             data.data.EquipementsSerieEtOption = data.data.EquipementsSerieEtOption.split('|');
             $scope.car = data.data;
 
+            var nomList = new Array('Nombre de portes','Puissance Fiscale','Boite de vitesse','Energie','Mise en circulation','Nombre de places','Couleur extérieure','Première main');
+            if(data.data.PremiereMain === 'FAUX'){
+                data.data.PremiereMain = 'Non';
+            }else{
+                data.data.PremiereMain = 'Oui';
+
+            }
+            var dataList = new Array(data.data.NbPortes,data.data.PuissanceFiscale,data.data.BoiteLibelle,data.data.EnergieLibelle,data.data.Date1Mec,data.data.NbPlaces,data.data.Couleur,data.data.PremiereMain);
+
+            //create the objectArray
+            $scope.infoList = [];
+            for (var i = 0; i < nomList.length; i ++) {
+                $scope.infoList.push({
+                    left: nomList[i],
+                    middle: dataList[i]
+                });
+            }
+            //create the objectArray
+            $scope.objList = [];
+            for (var k = 0; k < data.data.EquipementsSerieEtOption.length; k += 3) {
+                $scope.objList.push({
+                    left: data.data.EquipementsSerieEtOption[k],
+                    middle: data.data.EquipementsSerieEtOption[k + 1],
+                    right: data.data.EquipementsSerieEtOption[k + 2]
+                });
+            }
 
         }
     });
