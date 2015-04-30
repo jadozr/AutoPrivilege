@@ -1,11 +1,11 @@
 <div class="cars">
     <div class="container" ng-controller="AutoPrivilegeCtrl">
-        <table ng-table="tableParams" show-filter="true" class="table">
-            <tr ng-repeat="car in $data" ng-click="showCarDetail(car._id)" ng-class="{color: hover}"
+        <!--<table ng-table="tableParams" show-filter="true" class="table">
+            <tr class="min" ng-repeat="car in $data" ng-click="showCarDetail(car._id)" ng-class="{color: hover}"
                 ng-mouseenter="hover = true" ng-mouseleave="hover = false">
                 <td><img class="img-rounded resize" ng-src="../photos/{{ getSrc(car.Photos) }}"></td>
-                <td data-title="'Marque'" filter="{ 'Marque': 'select' }" filter-data="names($column)">
-                    <!--<img class="img-rounded resizeBrand" ng-src="../marques/{{ getSrc(car.Marque) }}.png">-->
+                <td data-title="'Marque'" filter="{ 'Marque': 'select' }" filter-data="names($column)"  sortable="'Marque'">
+                    &lt;!&ndash;<img class="img-rounded resizeBrand" ng-src="../marques/{{ getSrc(car.Marque) }}.png">&ndash;&gt;
                     {{car.Marque}}
                 </td>
                  <td data-title="'Modèle'">
@@ -16,6 +16,25 @@
                 </td>
                 <td data-title="'Prix de vente'" sortable="PrixVenteTTC">
                     {{car.PrixVenteTTC}}
+                </td>
+            </tr>
+        </table>-->
+        <table ng-table="tableParams" show-filter="true" class="table">
+            <tr ng-repeat="car in $data" ng-if="$index % 3 == 0">
+<!--                <td data-title="'Marque'" filter="{ 'Marque': 'select' }" filter-data="names($column)"
+                    ng-click="showCarDetail(car._id)" ng-class="{color: hover}" ng-mouseenter="hover = true"
+                    ng-mouseleave="hover = false" ng-repeat="car in $data.slice($index, $index + 3)">-->
+                <td data-title="'Recherche par Marque'" filter="{ 'Marque': 'select' }" filter-data="names($column)" ng-repeat="car in $data.slice($index, $index + 3)">
+                    <div id="milieu">                         
+                        <div class="bloc1">
+                            <img class=" img-rounded resize" ng-src="../photos/{{ getSrc(car.Photos) }}">                             
+                        </div>                         
+                        <div class="bloc2">
+                            Modèle: {{car.Famille}}<br/>Km: {{car.Kilometrage}}<br/>Prix: {{car.PrixVenteTTC}}<br/>Energie:
+                            {{car.EnergieLibelle}}<br/>Garantie: {{car.GarantieLibelle}}<br/>
+                            <button class="medium bouton bleu" ng-click="showCarDetail(car._id); scrollToAnchor('foo')">Détails</button></a>                         
+                        </div>
+                    </div>
                 </td>
             </tr>
         </table>

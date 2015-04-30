@@ -25,7 +25,7 @@ autoPrivilegeApp.filter('unique', function () {
     };
 });
 
-autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, $window, autoPrivilegeFactory, NgTableParams) {
+autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, $window, $location, $anchorScroll, autoPrivilegeFactory, NgTableParams) {
 
     $scope.getSrc = function (photos) {
         return photos.split('|')[0];
@@ -82,6 +82,7 @@ autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, 
                     orderedData;
                 $scope.users = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
                 params.total(orderedData.length); // set total for recalc pagination
+                console.log($scope.users);
                 $defer.resolve($scope.users);
             });
         }
@@ -101,7 +102,7 @@ autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, 
             return -1;
         };
 
-    $scope.names = function(column) {
+    $scope.names = function (column) {
         var def = $q.defer(),
             arr = [],
             names = [];
@@ -116,7 +117,6 @@ autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, 
                 }
             });
         });
-        console.log(names);
         def.resolve(names);
         return def;
     };
@@ -124,6 +124,12 @@ autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, 
 // Show Car detail
     $scope.showCarDetail = function (_id) {
         $window.location = '#/carDetails/' + _id;
+    };
+
+    $scope.scrollToAnchor = function(id) {
+        $location.hash(id);
+        console.log($location.hash());
+        $anchorScroll();
     };
 });
 
@@ -137,12 +143,10 @@ autoPrivilegeApp.controller('CarDetailsCtrl', function ($scope, $routeParams, au
             var res = str.split('|');
             angular.forEach(res, function (item) {
                 var line = {src: 'photos/' + item, desc: item};
-                if($scope.photos.length <= 10)
-                {
+                if ($scope.photos.length <= 10) {
                     $scope.photos.push(line);
                 }
             });
-
 
             // initial image index
             $scope._Index = 0;
@@ -199,6 +203,7 @@ autoPrivilegeApp.controller('CarDetailsCtrl', function ($scope, $routeParams, au
 
         }
     });
+
 });
 autoPrivilegeApp.controller('ContactCtrl', function ($scope, autoPrivilegeFactory) {
 
