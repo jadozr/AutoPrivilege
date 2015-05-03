@@ -17,6 +17,22 @@ autoPrivilegeApp.directive('back', ['$window', function ($window) {
     };
 }]);
 
+
+autoPrivilegeApp.directive('checkImage', function($http) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            attrs.$observe('ngSrc', function(ngSrc) {
+                $http.get(ngSrc).success(function(){
+                }).error(function(){
+                    element.attr('src', '../images/no_pic_available'); // set default image
+                });
+            });
+        }
+    };
+});
+
+
 autoPrivilegeApp.filter('unique', function () {
     return function (arr, field) {
         return _.uniq(arr, function (a) {

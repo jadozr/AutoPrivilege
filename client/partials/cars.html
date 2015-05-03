@@ -27,7 +27,9 @@
                 <td data-title="'Recherche par Marque'" filter="{ 'Marque': 'select' }" filter-data="names($column)" ng-repeat="car in $data.slice($index, $index + 3)">
                     <div id="milieu">                         
                         <div class="bloc1">
-                            <img class=" img-rounded resize" ng-src="../photos/{{ getSrc(car.Photos) }}">                             
+                            <!-- <img class=" img-rounded resize" ng-src="../photos/{{ getSrc(car.Photos) }}"> -->
+                            <img class=" img-rounded resize" check-image ng-src="../photos/{{ getSrc(car.Photos) }}" alt="Image" >
+                             
                         </div>                         
                         <div class="bloc2">
                             Modèle: {{car.Famille}}<br/>Km: {{car.Kilometrage}}<br/>Prix: {{car.PrixVenteTTC}}<br/>Energie:
@@ -38,5 +40,7 @@
                 </td>
             </tr>
         </table>
+        <pre>Total DATA: ...{{$data.length}}</pre>
+
     </div>
 </div>
