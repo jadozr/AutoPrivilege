@@ -25,7 +25,7 @@ autoPrivilegeApp.directive('checkImage', function($http) {
             attrs.$observe('ngSrc', function(ngSrc) {
                 $http.get(ngSrc).success(function(){
                 }).error(function(){
-                    element.attr('src', '../images/no_pic_available'); // set default image
+                    element.attr('src', '../images/no_pic_available.png'); // set default image
                 });
             });
         }
