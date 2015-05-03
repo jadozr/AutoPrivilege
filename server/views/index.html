@@ -36,6 +36,20 @@
 
 </head>
 <body class="home">
+<!--[if lt IE 9]>
+<p class="browsehappy">Vous utilisez un navigateur <strong>désuet</strong>. Veuillez <a
+        href="http://browsehappy.com/">mettre à jour votre
+    navigateur</a> Internet.</p>
+
+<h3 style="text-align: center;">
+    Cette application requiert une version plus récente d'Internet Explorer.
+</h3>
+<![endif]-->
+<noscript>
+    <h3 style="text-align: center;">
+        Cette application requiert que Javascript soit activé pour fonctionner.
+    </h3>
+</noscript>
 <div class="container">
     <nav class="navbar navbar-default navbar-static-top">
         <div class="navbar" ng-controller="NavbarCtrl">
@@ -56,20 +70,6 @@
         </div>
     </nav>
     <hr/>
-    <!--[if lt IE 9]>
-    <p class="browsehappy">Vous utilisez un navigateur <strong>désuet</strong>. Veuillez <a
-            href="http://browsehappy.com/">mettre à jour votre
-        navigateur</a> Internet.</p>
-
-    <h3 style="text-align: center;">
-        Cette application requiert une version plus récente d'Internet Explorer.
-    </h3>
-    <![endif]-->
-    <noscript>
-        <h3 style="text-align: center;">
-            Cette application requiert que Javascript soit activé pour fonctionner.
-        </h3>
-    </noscript>
     <ng-view></ng-view>
 </div>
 <footer class="footer">
