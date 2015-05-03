@@ -4,6 +4,9 @@ autoPrivilegeApp.controller('NavbarCtrl', function NavbarController($scope, $loc
     $scope.routeIs = function (routeName) {
         return $location.path() === routeName;
     };
+    if( screen.availHeight < 500 || screen.availWidth < 700 ){
+       alert('Ce site n\'est pas optimisé pour les appareils mobiles et tablette, l\'équipe AutoPrivilège.');
+    }
 });
 
 autoPrivilegeApp.directive('back', ['$window', function ($window) {
