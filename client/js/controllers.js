@@ -18,13 +18,13 @@ autoPrivilegeApp.directive('back', ['$window', function ($window) {
 }]);
 
 
-autoPrivilegeApp.directive('checkImage', function($http) {
+autoPrivilegeApp.directive('checkImage', function ($http) {
     return {
         restrict: 'A',
-        link: function(scope, element, attrs) {
-            attrs.$observe('ngSrc', function(ngSrc) {
-                $http.get(ngSrc).success(function(){
-                }).error(function(){
+        link: function (scope, element, attrs) {
+            attrs.$observe('ngSrc', function (ngSrc) {
+                $http.get(ngSrc).success(function () {
+                }).error(function () {
                     element.attr('src', '../images/no_pic_available.png'); // set default image
                 });
             });
@@ -84,7 +84,7 @@ autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, 
 
     $scope.tableParams = new NgTableParams({
         page: 1,            // show first page
-        count: 10           // count per page
+        count: 12           // count per page
     }, {
         total: qDocs.length, // length of data
         getData: function ($defer, params) {
@@ -97,12 +97,22 @@ autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, 
                     $filter('filter')(orderedData, params.filter()) :
                     orderedData;
                 $scope.users = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
-                params.total(orderedData.length); // set total for recalc pagination
-                console.log($scope.users);
+                $scope.totalsCars = orderedData.length;
+                if (orderedData.slice(0, 3).length == 1) {
+                    $scope.colonne1 = true;
+                } else {
+                    $scope.colonne1 = false;
+                }
+                if (orderedData.slice(0, 3).length == 2) {
+                    $scope.colonne2 = true;
+                } else {
+                    $scope.colonn2 = false;
+                }
                 $defer.resolve($scope.users);
             });
         }
     });
+
 
     var inArray = Array.prototype.indexOf ?
         function (val, arr) {
@@ -142,9 +152,8 @@ autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, 
         $window.location = '#/carDetails/' + _id;
     };
 
-    $scope.scrollToAnchor = function(id) {
+    $scope.scrollToAnchor = function (id) {
         $location.hash(id);
-        console.log($location.hash());
         $anchorScroll();
     };
 });

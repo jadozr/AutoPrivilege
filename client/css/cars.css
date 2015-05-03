@@ -54,6 +54,12 @@
     background-color: white;
     padding-bottom: 5px;
 }
+.cars .middle {
+    width: 360px;
+    margin: auto;
+    background-color: white;
+    padding-bottom: 5px;
+}
 
 .cars .bloc1 {
     float: left;
@@ -106,4 +112,15 @@
 }
 .cars .bleu.bouton:hover{
     background-color: #2575cf;
+}
+
+.cars #NBVehicule {
+    color: #2385A1;
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+    float: right;
+    clear: right;
+    margin: 7px 15px 0 0;
+    width: 250px;
 }
