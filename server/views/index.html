@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html ng-app="autoPrivilege">
 <head>
-    <title>AutoPrivilege</title>
-    <link rel="shortcut icon" href="#" >
+    <meta charset="utf-8">
+    <title>AutoPrivilege: le spécialiste de l'occasion</title>
+    <meta name="description" content="AutoPrivilege : le spécialiste de l'occasion">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="canonical" href="http://autoprivilege.org"/>
+
+    <link rel="shortcut icon" href="#">
 
     <link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/contact.css">
@@ -50,6 +56,20 @@
         </div>
     </nav>
     <hr/>
+    <!--[if lt IE 9]>
+    <p class="browsehappy">Vous utilisez un navigateur <strong>désuet</strong>. Veuillez <a
+            href="http://browsehappy.com/">mettre à jour votre
+        navigateur</a> Internet.</p>
+
+    <h3 style="text-align: center;">
+        Cette application requiert une version plus récente d'Internet Explorer.
+    </h3>
+    <![endif]-->
+    <noscript>
+        <h3 style="text-align: center;">
+            Cette application requiert que Javascript soit activé pour fonctionner.
+        </h3>
+    </noscript>
     <ng-view></ng-view>
 </div>
 <footer class="footer">
@@ -58,6 +78,7 @@
 
         <p class="text-muted">Horaires d'ouverture :
             Du Lundi au Vendredi de 9h à 12h30 et de 14h à 19h et le Samedi de 10h à 18h</p>
+
         <p class="text-muted">Tèl: 07.60.37.44.45</p>
     </div>
 </footer>
