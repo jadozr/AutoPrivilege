@@ -4,8 +4,8 @@ autoPrivilegeApp.controller('NavbarCtrl', function NavbarController($scope, $loc
     $scope.routeIs = function (routeName) {
         return $location.path() === routeName;
     };
-    if( screen.availHeight < 500 || screen.availWidth < 700 ){
-       alert('Notre site n\'est pas optimisé pour les smartphones et les tablettes\nl\'équipe d\'AutoPrivilège.');
+    if (screen.availHeight < 500 || screen.availWidth < 700) {
+        alert('Notre site n\'est pas optimisé pour les smartphones et les tablettes\nl\'équipe d\'AutoPrivilège.');
     }
 });
 
@@ -47,11 +47,11 @@ autoPrivilegeApp.filter('unique', function () {
 autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, $window, $location, $anchorScroll, autoPrivilegeFactory, NgTableParams) {
 
     $scope.getSrc = function (photos) {
-       if(photos){
-           return photos.split('|')[0];
-       }else{
-           return '../photos/noPic.png';
-       }
+        if (photos) {
+            return photos.split('|')[0];
+        } else {
+            return '../photos/noPic.png';
+        }
     };
 
     $scope.map = {center: {latitude: 47.300014, longitude: -1.750570}, zoom: 14};
@@ -172,7 +172,7 @@ autoPrivilegeApp.controller('CarDetailsCtrl', function ($scope, $routeParams, au
 
             $scope.photos = [];
             var str = data.data.Photos;
-            if(str) {
+            if (str) {
                 //Comes inside only if the data is not empty and not null
                 var res = str.split('|');
                 angular.forEach(res, function (item) {
@@ -181,7 +181,7 @@ autoPrivilegeApp.controller('CarDetailsCtrl', function ($scope, $routeParams, au
                         $scope.photos.push(line);
                     }
                 });
-            }else{
+            } else {
                 var line = {src: 'photos/noPic.png', desc: 'photos/noPic.png'};
                 $scope.photos.push(line);
             }
@@ -209,8 +209,11 @@ autoPrivilegeApp.controller('CarDetailsCtrl', function ($scope, $routeParams, au
             $scope.showPhoto = function (index) {
                 $scope._Index = index;
             };
-
-            data.data.EquipementsSerieEtOption = data.data.EquipementsSerieEtOption.split('|');
+            if (data.data.EquipementsSerieEtOption) {
+                data.data.EquipementsSerieEtOption = data.data.EquipementsSerieEtOption.split('|');
+            }else{
+                data.data.EquipementsSerieEtOption ='Pas renseigné';
+            }
             $scope.car = data.data;
 
             var nomList = new Array('Nombre de portes', 'Puissance Fiscale', 'Boite de vitesse', 'Energie', 'Mise en circulation', 'Nombre de places', 'Couleur extérieure', 'Première main');
