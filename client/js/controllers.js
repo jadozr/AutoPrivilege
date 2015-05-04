@@ -212,7 +212,7 @@ autoPrivilegeApp.controller('CarDetailsCtrl', function ($scope, $routeParams, au
             if (data.data.EquipementsSerieEtOption) {
                 data.data.EquipementsSerieEtOption = data.data.EquipementsSerieEtOption.split('|');
             }else{
-                data.data.EquipementsSerieEtOption ='Pas renseigné';
+                data.data.EquipementsSerieEtOption ={0:'Pas renseigné'};
             }
             $scope.car = data.data;
 
