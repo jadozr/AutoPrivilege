@@ -47,7 +47,11 @@ autoPrivilegeApp.filter('unique', function () {
 autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, $window, $location, $anchorScroll, autoPrivilegeFactory, NgTableParams) {
 
     $scope.getSrc = function (photos) {
-        return photos.split('|')[0];
+       if(photos){
+           return photos.split('|')[0];
+       }else{
+           return '../photos/noPic.png';
+       }
     };
 
     $scope.map = {center: {latitude: 47.300014, longitude: -1.750570}, zoom: 14};
