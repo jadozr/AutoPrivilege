@@ -101,12 +101,12 @@ autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, 
                     orderedData;
                 $scope.users = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
                 $scope.totalsCars = orderedData.length;
-                if (orderedData.slice(0, 3).length == 1) {
+                if (orderedData.slice(0, 3).length === 1) {
                     $scope.colonne1 = true;
                 } else {
                     $scope.colonne1 = false;
                 }
-                if (orderedData.slice(0, 3).length == 2) {
+                if (orderedData.slice(0, 3).length === 2) {
                     $scope.colonne2 = true;
                 } else {
                     $scope.colonn2 = false;
@@ -168,13 +168,17 @@ autoPrivilegeApp.controller('CarDetailsCtrl', function ($scope, $routeParams, au
 
             $scope.photos = [];
             var str = data.data.Photos;
-            var res = str.split('|');
-            angular.forEach(res, function (item) {
-                var line = {src: 'photos/' + item, desc: item};
-                if ($scope.photos.length <= 10) {
-                    $scope.photos.push(line);
-                }
-            });
+            if(str) {
+                //Comes inside only if the data is not empty and not null
+                var res = str.split('|');
+                angular.forEach(res, function (item) {
+                    var line = {src: 'photos/' + item, desc: item};
+                    if ($scope.photos.length <= 10) {
+                        $scope.photos.push(line);
+                    }
+                });
+            }
+
 
             // initial image index
             $scope._Index = 0;
