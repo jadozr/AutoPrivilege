@@ -181,6 +181,9 @@ autoPrivilegeApp.controller('CarDetailsCtrl', function ($scope, $routeParams, au
                         $scope.photos.push(line);
                     }
                 });
+            }else{
+                var line = {src: 'photos/noPic.png', desc: 'photos/noPic.png'};
+                $scope.photos.push(line);
             }
 
 
