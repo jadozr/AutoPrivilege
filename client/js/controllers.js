@@ -115,6 +115,7 @@ autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, 
                 } else {
                     $scope.colonn2 = false;
                 }
+                params.total(orderedData.length); // set total for recalc pagination
                 $defer.resolve($scope.users);
             });
         }
