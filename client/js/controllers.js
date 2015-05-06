@@ -56,14 +56,13 @@ autoPrivilegeApp.controller('AutoPrivilegeCtrl', function ($scope, $q, $filter, 
 
     $scope.map = {center: {latitude: 47.300014, longitude: -1.750570}, zoom: 14};
     $scope.options = {scrollwheel: false};
-
     $scope.marker = {
         id: 0,
         coords: {
             latitude: 47.300014,
             longitude: -1.750570
         },
-        options: {draggable: true},
+        options: {draggable: true, animation: 1},
         events: {
             dragend: function (marker) {
                 var lat = marker.getPosition().lat();
