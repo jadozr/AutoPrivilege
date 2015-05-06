@@ -1,7 +1,7 @@
 <div class="cars">
     <div class="container" ng-controller="AutoPrivilegeCtrl">
         <div id="NBVehicule">{{totalsCars}} véhicules diponibles</div>
-        <table ng-table="tableParams" show-filter="true" class="table">
+        <table ng-table="tableParams" show-filter="true" class="table ng-table-rowselected ng-table-responsive table-responsive">
             <tr ng-repeat="car in $data" ng-if="$index % 3 == 0">
                 <td data-title="'Recherche par Marque'" filter="{ 'Marque': 'select' }" filter-data="names($column)"
                     ng-repeat="car in $data.slice($index, $index + 3)">
