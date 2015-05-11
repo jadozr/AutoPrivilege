@@ -1,5 +1,5 @@
 'use strict';
-var autoPrivilegeApp = angular.module('autoPrivilege', ['ngRoute', 'uiGmapgoogle-maps', 'ngTable', 'ngAnimate', 'ngTouch'])
+var autoPrivilegeApp = angular.module('autoPrivilege', ['ngRoute', 'uiGmapgoogle-maps', 'ngTable', 'ngAnimate', 'ngTouch','nvd3'])
     .config(function ($routeProvider) {
         $routeProvider
             .when('/', {
@@ -14,6 +14,9 @@ var autoPrivilegeApp = angular.module('autoPrivilege', ['ngRoute', 'uiGmapgoogle
             }).when('/occasions', {
                 templateUrl: '/partials/cars.html',
                 controller: 'AutoPrivilegeCtrl'
+            }).when('/charts', {
+                templateUrl: '/partials/chart.html',
+                controller: 'ChartCtrl'
             }).otherwise({
                 redirectTo: '/'
             });

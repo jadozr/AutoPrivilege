@@ -1,6 +1,6 @@
 <div class="cars">
     <div class="container" ng-controller="AutoPrivilegeCtrl">
-        <div id="NBVehicule">{{totalsCars}} véhicules diponibles</div>
+        <div id="NBVehicule">{{totalsCars}} véhicules diponibles<a ng-href="/#/charts">&nbsp;</a></div>
         <table ng-table="tableParams" show-filter="true" class="table ng-table-rowselected ng-table-responsive table-responsive">
             <tr ng-repeat="car in $data" ng-if="$index % 3 == 0">
                 <td data-title="'Recherche par Marque'" filter="{ 'Marque': 'select' }" filter-data="names($column)"

@@ -211,8 +211,8 @@ autoPrivilegeApp.controller('CarDetailsCtrl', function ($scope, $routeParams, au
             };
             if (data.data.EquipementsSerieEtOption) {
                 data.data.EquipementsSerieEtOption = data.data.EquipementsSerieEtOption.split('|');
-            }else{
-                data.data.EquipementsSerieEtOption ={0:'Pas renseigné'};
+            } else {
+                data.data.EquipementsSerieEtOption = {0: 'Pas renseigné'};
             }
             $scope.car = data.data;
 
@@ -270,4 +270,74 @@ autoPrivilegeApp.controller('ContactCtrl', function ($scope, autoPrivilegeFactor
     $scope.close = function () {
         $scope.success = false;
     };
+});
+
+autoPrivilegeApp.controller('ChartCtrl', function ($scope) {
+    $scope.options = {
+        chart: {
+            type: 'discreteBarChart',
+            height: 450,
+            margin: {
+                top: 20,
+                right: 20,
+                bottom: 60,
+                left: 55
+            },
+            x: function (d) {
+                return d.label;
+            },
+            y: function (d) {
+                return d.value;
+            },
+            showValues: true,
+            valueFormat: function (d) {
+                return d3.format(',.4f')(d);
+            },
+            transitionDuration: 500,
+            xAxis: {
+                axisLabel: 'Jour de la semaine'
+            },
+            yAxis: {
+                axisLabel: 'Nombres de véhicules disponibles',
+                axisLabelDistance: 30
+            }
+        }
+    };
+
+    $scope.data = [
+        {
+            key: 'Cumulative Return',
+
+            values: [
+                {
+                    'label': 'Lun',
+                    'value': 89
+                },
+                {
+                    'label': 'Mar',
+                    'value': 0
+                },
+                {
+                    'label': 'Mer',
+                    'value': 0
+                },
+                {
+                    'label': 'Jeu',
+                    'value': 0
+                },
+                {
+                    'label': 'Ven',
+                    'value': 0
+                },
+                {
+                    'label': 'Sam',
+                    'value': 0
+                },
+                {
+                    'label': 'Dim',
+                    'value': 0
+                }
+            ]
+        }
+    ];
 });
