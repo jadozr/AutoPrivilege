@@ -315,7 +315,7 @@ autoPrivilegeApp.controller('ChartCtrl', function ($scope) {
                 },
                 {
                     'label': 'Mar',
-                    'value': 0
+                    'value': 84
                 },
                 {
                     'label': 'Mer',
